@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'ÎLE DE RÊVE - Патронажная служба</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: rgb(103, 93, 83); 
+            --secondary-color: rgba(176, 151, 120, 1); 
+            --light-color: rgba(241, 239, 211, 0.9); 
+            --dark-color: rgba(61, 56, 49, 1); 
+            --hover-primary: rgba(112, 102, 91, 1);
+            --hover-secondary: rgba(156, 134, 107, 1);
+        }
+        
+        /* Navbar styles */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .navbar.scrolled {
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color) !important;
+            font-size: 1.5rem;
+        }
+        .nav-link {
+            color: var(--primary-color) !important;
+            font-weight: 500;
+            padding: 8px 15px !important;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            background-color: rgba(176, 151, 120, 0.1);
+        }
+        
+        /* Main content padding to account for fixed navbar */
+        body {
+            font-family: Georgia, serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            padding-top: 80px; /* Adjusted for navbar height */
+            background-color: var(--light-color);
+            margin-top: 30px
+        }
+        
+        .main-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1, h2, h3 {
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--primary-color);
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 5px;
+            margin-top: 40px;
+        }
+        
+        .intro-box {
+            background-color: rgba(176, 151, 120, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            border: 1px solid rgba(176, 151, 120, 0.3);
+        }
+        
+        .highlight-box {
+            background-color: rgba(176, 151, 120, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border-left: 5px solid var(--secondary-color);
+        }
+        
+        .mission-box {
+            text-align: center;
+            background-color: rgba(103, 93, 83, 0.1);
+            padding: 25px;
+            border-radius: 8px;
+            margin: 40px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border: 1px solid rgba(103, 93, 83, 0.2);
+        }
+        
+        .quote {
+            font-style: italic;
+            text-align: center;
+            margin: 25px 0;
+            color: var(--primary-color);
+            font-size: 1.1em;
+            padding: 0 20px;
+        }
+        
+        ul {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+        
+        li:before {
+            content: "•";
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+            font-size: 1.5em;
+            line-height: 0.8;
+        }
+        
+        .signature {
+            text-align: right;
+            margin-top: 40px;
+            font-family: Georgia, serif;
+        }
+        
+        .logo {
+            text-align: center;
+            font-size: 2em;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+        
+        strong {
+            color: var(--primary-color);
+        }
+        
+        /* Footer styles */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--light-color);
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+        
+        footer a {
+            color: var(--light-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        footer a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .list-inline-item:not(:last-child) {
+            margin-right: 15px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+            
+            .navbar-brand {
+                font-size: 1.2em;
+            }
+            
+            .navbar-brand img {
+                height: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="L'ÎLE DE RÊVE.html">
+                <img src="minilogo.png" alt="Logo">L'ÎLE DE RÊVE
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="L'ÎLE DE RÊVE.html#services">Услуги</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="L'ÎLE DE RÊVE.html#about">О нас</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="L'ÎLE DE RÊVE.html#contacts">Контакты</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основное содержимое -->
+    <div class="main-container">
+        <div class="logo">L'ILE DE RÊVE</div>
+        
+        <h1>Ваш остров спокойствия и заботы</h1>
+        
+        <div class="intro-box">
+            <h2>Добро пожаловать в патронажную службу L'ILE DE RÊVE</h2>
+            <p>Место, где профессиональная забота встречается с душевным теплом</p>
+            <p>Название, в переводе с французского означающее <strong>«Остров мечты»</strong>, отражает нашу главную миссию: создавать для вас и ваших близких пространство безопасности, комфорта и безмятежности.</p>
+        </div>
+        
+        <h2>Обо мне</h2>
+        
+        <p>Меня зовут <strong>Малика Абубакарова</strong>, и моя жизнь уже много лет посвящена помощи тем, кто в ней особенно нуждается. С 2015 по 2024 год я жила и работала в Германии, в Гамбурге, где прошла серьезную профессиональную школу.</p>
+        
+        <h3>Мой профессиональный путь</h3>
+        <ul>
+            <li><strong>4,5 года</strong> - обучение на медицинского ассистента (medizinische Fachangestellte), погружение в европейские стандарты медицины.</li>
+            <li><strong>4 года</strong> - работа в психиатрии, помощь людям с ментальными особенностями.</li>
+            <li><strong>4,5 года</strong> - уход за тяжелобольными и недееспособными пациентами, оттачивание искусства заботы.</li>
+            <li><strong>2008 год</strong> - окончание <strong>РГГУ</strong> по специальности «Менеджмент организации», что дало основу для системного подхода в патронажной деятельности.</li>
+        </ul>
+        
+        <h2>Почему L'ILE DE RÊVE?</h2>
+        
+        <div class="highlight-box">
+            <p>Объединив <strong>строгие стандарты немецкой медицины</strong> и <strong>лучшие традиции российской заботы</strong>, я создала службу, которая предлагает:</p>
+            <ul>
+                <li><strong>Амбулаторный и стационарный уход</strong> за пожилыми людьми, пациентами с ограниченными возможностями и ментальными расстройствами.</li>
+                <li><strong>Индивидуальный подход</strong>, где каждый подопечный окружен вниманием, уважением и профессиональной поддержкой.</li>
+                <li><strong>Комфортная среда</strong>, позволяющая вести образ жизни, максимально приближенный к здоровому ритму.</li>
+            </ul>
+        </div>
+        
+        <h2>Наша миссия</h2>
+        
+        <p style="font-size: 1.1em;">Я верю, что в такой великой стране, как <strong>Российская Федерация</strong>, сфера патронажного ухода должна развиваться на уровне, достойном ее масштабов. Этот проект - <strong>не просто бизнес</strong>, а <strong>социально значимая инициатива</strong>, которая способна менять качество жизни людей.</p>
+        
+        <div class="quote">
+            "Моя цель - не просто оказывать услуги, а закладывать новые стандарты, вдохновляя на перемены в этой важной для общества сфере."
+        </div>
+        
+        <div class="mission-box">
+            <p style="font-size: 1.2em;">
+                L'ILE DE RÊVE - это не просто служба ухода.<br>
+                Это <strong>островок humanity</strong>, где каждый человек ценен, а его благополучие - наша главная задача.
+            </p>
+            <p style="font-weight: bold; margin-top: 15px;">
+                Доверьте нам самое дорогое - мы сделаем все, чтобы ваши близкие чувствовали себя как дома.
+            </p>
+        </div>
+        
+        <div class="signature">
+            <p><strong>С заботой,</strong></p>
+            <p style="font-size: 1.2em;"><strong>Малика Абубакарова</strong></p>
+            <p>Основатель патронажной службы <strong>L'ILE DE RÊVE</strong></p>
+        </div>
+    </div>
+      
+    <!-- Футер -->
+    <footer class="text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0 text-lg-start">
+                    <img src="sminilogo-round.png" alt="Logo" style="height: 40px; margin-right: 10px;">L'ÎLE DE RÊVE
+                </div>
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item"><a href="L'ÎLE DE RÊVE.html#services">Услуги</a></li>
+                        <li class="list-inline-item"><a href="About.html">О нас</a></li>
+                        <li class="list-inline-item"><a href="L'ÎLE DE RÊVE.html#contacts">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <p class="small mb-0">© 2025 L'ÎLE DE RÊVE. Все права защищены.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Скрипты -->
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script>
+        // Изменение навигации при скролле
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                document.querySelector('.navbar').classList.add('scrolled');
+            } else {
+                document.querySelector('.navbar').classList.remove('scrolled');
+            }
+        });
+
+        // Плавная прокрутка для якорных ссылок
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+    

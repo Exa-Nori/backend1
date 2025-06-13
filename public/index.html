@@ -19,7 +19,7 @@
             --hover-secondary: rgba(156, 134, 107, 1);
         }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Georgia , Tahoma, Verdana, serif;
             line-height: 1.6;
             color: var(--dark-color);
             padding-top: 72px;
@@ -240,10 +240,25 @@
             box-shadow: 0 5px 15px rgba(112, 102, 62, 0.2);
         }
         
+        /* Footer styles */
         footer {
-            background-color: #5d582d94;
-            color: rgb(195, 196, 167);
-            padding: 50px 0 30px;
+            background-color: var(--primary-color);
+            color: var(--light-color);
+            padding: 30px 0;
+        }
+        
+        footer a {
+            color: var(--light-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        footer a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .list-inline-item:not(:last-child) {
+            margin-right: 15px;
         }
         
         @media (max-width: 768px) {
@@ -263,8 +278,8 @@
     <!-- Навигация -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="D:\Work\minilogo.png" alt="Logo" class="hero-image"></i>L'ÎLE DE RÊVE
+            <a class="navbar-brand" href="L'ÎLE DE RÊVE.html">
+                <img src="minilogo.png" alt="Logo" class="hero-image"></i>L'ÎLE DE RÊVE
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -272,16 +287,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#Map">Карта</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="#services">Услуги</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#login">Вход</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">О нас</a>
+                        <a class="nav-link" href="About.html">О нас</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#contacts">Контакты</a>
@@ -296,7 +305,7 @@
         <div class="container text-center">
             <section class="hero">
                 <div class="hero-container">
-                <img src="D:\Work\L'île de rêve-1 no fon-round.png" alt="Logo" class="hero-image">
+                <img src="L'île de rêve-1 no fon-round.png" alt="Logo" class="hero-image">
                 </div>
             </section>
             <h1 class="hero-title display-3">L'ÎLE DE RÊVE</h1>
@@ -359,71 +368,23 @@
                 <div class="col-lg-6 mb-4 mb-lg-0">
                     <div class="pe-lg-4">
                         <h3 class="mb-4">L'ÎLE DE RÊVE - островок заботы</h3>
-                        <p>Наша компания уже более 10 лет предоставляет качественные услуги патронажного ухода. Мы объединяем профессионалов с медицинским образованием и большим опытом работы.</p>
-                        <p>Наша миссия - сделать жизнь пожилых людей и людей с ограниченными возможностями комфортной и наполненной заботой.</p>
-                        <div class="mt-4">
-                            <a href="#contacts" class="btn btn-primary me-2">Связаться с нами</a>
+                        <p>Мы верим, что в такой великой стране, как Российская Федерация, сфера патронажного ухода должна развиваться на уровне, достойном ее масштабов. Этот проект - не просто бизнес, а социально значимая инициатива, которая способна менять качество жизни людей.</p>
+                        <p>"Наша цель - не просто оказывать услуги, а закладывать новые стандарты, вдохновляя на перемены в этой важной для общества сфере."</p>
+                        <div class="nav-item">
+                            <a href="About.html" class="btn btn-primary me-2">О нашей компании</a>
                             <a href="#services" class="btn btn-outline-primary">Все услуги</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="about-content">
-                        <h4>Наши преимущества:</h4>
+                        <h4>Мы предлагаем вам:</h4>
                         <ul class="list-unstyled">
-                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Квалифицированные специалисты с медицинским образованием</li>
-                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Индивидуальный подход к каждому клиенту</li>
-                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Гибкий график работы</li>
-                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Контроль качества услуг</li>
-                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Доступные цены</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Амбулаторный и стационарный уход за пожилыми людьми, пациентами с ограниченными возможностями и ментальными расстройствами.</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Индивидуальный подход, где каждый подопечный окружен вниманием, уважением и профессиональной поддержкой.</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Комфортная среда, позволяющая вести образ жизни, максимально приближенный к здоровому ритму.</li>
                         </ul>
                         <p>Мы работаем по всей Москве и ближайшему Подмосковью, обеспечивая круглосуточную поддержку нашим клиентам.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Вход -->
-    <section class="section" id="login">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="card shadow-sm border-0">
-                        <div class="row g-0">
-                            <div class="col-md-6 d-flex align-items-center bg-primary text-white p-5 ">
-                                <div>
-                                    <h3 class="mb-4">Вход для клиентов</h3>
-                                    <p>Доступ к персональному кабинету с историей услуг, расписанием и возможностью онлайн-записи.</p>
-                                    <div class="mt-4">
-                                        <i class="fas fa-lock fa-2x me-3"></i>
-                                        <span>Гарантия конфиденциальности ваших данных</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card-body p-5">
-                                    <form>
-                                        <div class="mb-3">
-                                            <label for="username" class="form-label">Email или телефон</label>
-                                            <input type="text" class="form-control" id="email" placeholder="Введите ваш email или телефон">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="password" class="form-label">Пароль</label>
-                                            <input type="password" class="form-control" id="password" placeholder="Введите ваш пароль">
-                                        </div>
-                                        <div class="d-grid mb-3">
-                                            <button type="submit" class="btn btn-primary">Войти</button>
-                                        </div>
-                                        <div class="text-center">
-                                            <a href="#" class="text-decoration-none small">Забыли пароль?</a>
-                                            <span class="mx-2 text-muted">|</span>
-                                            <a href="#" class="text-decoration-none small">Регистрация</a>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -493,8 +454,9 @@
                             </div>
                             <div class="mt-5">
                                 <h5 class="mb-3">Мы в соцсетях</h5>
-                                <a href="#" class="btn btn-outline-secondary btn-sm me-2"><i class="fab fa-telegram-plane me-1"></i> Telegram</a>
+                                <a href="https://t.me/liledereve" class="btn btn-outline-secondary btn-sm me-2"><i class="fab fa-telegram-plane me-1"></i> Telegram</a>
                                 <a href="#" class="btn btn-outline-secondary btn-sm me-2"><i class="fab fa-whatsapp me-1"></i> WhatsApp</a>
+                                <a href="https://www.instagram.com/liledereve_" class="btn btn-outline-secondary btn-sm me-2"><i class="fab fa-instagram me-1"></i> Instagram</a>
                             </div>
                         </div>
                     </div>
@@ -503,18 +465,18 @@
         </div>
     </section>
 
-    <!-- Футер -->
+   <!-- Футер -->
     <footer class="text-center">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 mb-4 mb-lg-0 text-lg-start">
-                    <img src="D:\Work\sminilogo-round.png" alt="Logo" class="hero-image"></i>   L'ÎLE DE RÊVE</h5>               
+                    <img src="sminilogo-round.png" alt="Logo" style="height: 40px; margin-right: 10px;">L'ÎLE DE RÊVE
                 </div>
                 <div class="col-lg-4 mb-4 mb-lg-0">
                     <ul class="list-inline mb-0">
-                        <li class="list-inline-item"><a href="#services" class="text-white text-decoration-none">Услуги</a></li>
-                        <li class="list-inline-item"><a href="#about" class="text-white text-decoration-none">О нас</a></li>
-                        <li class="list-inline-item"><a href="#contacts" class="text-white text-decoration-none">Контакты</a></li>
+                        <li class="list-inline-item"><a href="L'ÎLE DE RÊVE.html#services">Услуги</a></li>
+                        <li class="list-inline-item"><a href="About.html">О нас</a></li>
+                        <li class="list-inline-item"><a href="L'ÎLE DE RÊVE.html#contacts">Контакты</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4 text-lg-end">
@@ -523,6 +485,7 @@
             </div>
         </div>
     </footer>
+
 
     <!-- Скрипты -->
     <!-- Bootstrap JS -->
