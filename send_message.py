@@ -1,4 +1,4 @@
-#pip install fastapi uvicorn httpx jinja2 python-multipart
+
 from fastapi import FastAPI, Request, Form, HTTPException
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
