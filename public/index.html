@@ -415,6 +415,23 @@
                                 </div>
                                 <button type="submit" class="btn btn-primary">Отправить сообщение</button>
                             </form>
+                             <script>
+                                document.getElementById('contactForm').addEventListener('submit', async (e) => {
+                                    e.preventDefault();
+                                    const formData = new FormData(e.target);
+
+                                    try {
+                                        const response = await fetch('/send_message', {
+                                            method: 'POST',
+                                            body: formData
+                                        });
+                                        const result = await response.json();
+                                        alert(result.message);
+                                    } catch (error) {
+                                        alert("Ошибка: " + error);
+                                    }
+                                });
+                             </script>                                    
                         </div>
                     </div>
                 </div>
