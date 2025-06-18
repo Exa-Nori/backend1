@@ -1,1 +1,1 @@
-pip install flask requests
+pip install flask requests logging
