@@ -70,7 +70,7 @@ def get_services():
         ]
     }
 
-@app.route('/api/contact', methods=['GET'])
+@app.route('/api/contact', methods=['POST'])
 @json_response
 def send_contact_message():
     """Обработка контактной формы"""
