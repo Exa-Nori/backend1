@@ -12,7 +12,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Конфигурация Telegram (замените на свои реальные значения)
-TELEGRAM_BOT_TOKEN = "7585621279:AAFLcwzw-lrh5PCHvgGZqZ6lG-TIPlwXZZo"
+TELEGRAM_BOT_TOKEN = "7585621279"
 TELEGRAM_CHAT_ID = "719874188"
 
 def escape_markdown(text):
