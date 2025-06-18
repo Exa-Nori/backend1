@@ -49,7 +49,6 @@ def json_response(f):
 
 @app.route('/')
 def serve_index():
-    """Главная страница"""
     return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/api/health')
@@ -58,17 +57,15 @@ def health_check():
     return jsonify({"status": "healthy"})
 
 @app.route('/api/services', methods=['GET'])
-@json_response
-def get_services():
-    """Получение списка услуг"""
-    return {
-        "services": [
-            {"id": 1, "name": "Уход за пожилыми", "icon": "elderly"},
-            {"id": 2, "name": "Медицинский уход", "icon": "medical_services"},
-            {"id": 3, "name": "Бытовая помощь", "icon": "home"},
-            {"id": 4, "name": "Психологическая поддержка", "icon": "psychology"}
+def services():
+    return jsonify({
+        'services': [
+            "Уход за пожилыми",
+            "Медицинский уход",
+            "Бытовая помощь",
+            "Психологическая поддержка"
         ]
-    }
+    })
 
 @app.route('/api/contact', methods=['POST'])
 @json_response
