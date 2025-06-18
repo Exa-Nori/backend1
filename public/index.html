@@ -421,66 +421,35 @@
                                 document.getElementById('contactForm').addEventListener('submit', async (e) => {
                                     e.preventDefault();
                                     
-                                    const form = e.target;
-                                    const formData = new FormData(form);
-                                    const submitBtn = form.querySelector('button[type="submit"]');
-                                    
-                                    // Блокируем кнопку при отправке
+                                    const formData = new FormData(e.target);
+                                    const submitBtn = e.target.querySelector('button[type="submit"]');
                                     submitBtn.disabled = true;
-                                    submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Отправка...';
-                                    
+
                                     try {
-                                        const response = await fetch('/app.py', {
+                                        const response = await fetch('http://localhost:5000/api/send_message', {
                                             method: 'POST',
-                                            body: formData,
-                                            headers: {
-                                                'Accept': 'application/json'
-                                            }
+                                            body: formData
                                         });
 
-                                        // Проверяем Content-Type
-                                        const contentType = response.headers.get('content-type');
-                                        if (!contentType || !contentType.includes('application/json')) {
-                                            const text = await response.text();
-                                            throw new Error(`Ожидался JSON, но получено: ${text.slice(0, 50)}...`);
+                                        if (!response.ok) {
+                                            throw new Error(`HTTP error! status: ${response.status}`);
                                         }
-                                        
+
                                         const result = await response.json();
                                         
-                                        // Показываем уведомление
-                                        showAlert(result.status === 'success' ? 'success' : 'danger', 
-                                                result.message || (result.status === 'success' ? 'Сообщение отправлено!' : 'Ошибка отправки'));
-                                        
-                                        if (result.status === 'success') {
-                                            form.reset(); // Очищаем форму при успехе
+                                        if (result.status === 'error') {
+                                            throw new Error(result.message);
                                         }
+                                        
+                                        alert(result.message || 'Сообщение отправлено!');
+                                        e.target.reset();
                                     } catch (error) {
-                                        showAlert('danger', 'Ошибка сети: ' + error.message);
+                                        console.error('Ошибка:', error);
+                                        alert('Ошибка: ' + error.message);
                                     } finally {
                                         submitBtn.disabled = false;
-                                        submitBtn.textContent = 'Отправить сообщение';
                                     }
                                 });
-
-                                // Функция для показа уведомлений
-                                function showAlert(type, message) {
-                                    const alertDiv = document.createElement('div');
-                                    alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
-                                    alertDiv.innerHTML = `
-                                        ${message}
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    `;
-                                    
-                                    const placeholder = document.getElementById('alertPlaceholder');
-                                    placeholder.innerHTML = '';
-                                    placeholder.appendChild(alertDiv);
-                                    
-                                    // Автоматическое закрытие через 5 секунд
-                                    setTimeout(() => {
-                                        alertDiv.classList.remove('show');
-                                        alertDiv.classList.add('fade');
-                                    }, 5000);
-                                }
                             </script>                                  
                         </div>
                     </div>
