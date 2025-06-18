@@ -8,7 +8,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 TELEGRAM_BOT_TOKEN = "7585621279:AAFLcwzw-lrh5PCHvgGZqZ6lG-TIPlwXZZo" 
-TELEGRAM_CHAT_ID = "-100123456789"         
+TELEGRAM_CHAT_ID = "719874188"         
 
 @app.route('/send_message', methods=['POST'])
 def send_message():
