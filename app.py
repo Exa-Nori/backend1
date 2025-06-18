@@ -57,7 +57,7 @@ def health_check():
     """Проверка работоспособности API"""
     return jsonify({"status": "healthy"})
 
-@app.route('/api/services')
+@app.route('/api/services', methods=['GET'])
 @json_response
 def get_services():
     """Получение списка услуг"""
