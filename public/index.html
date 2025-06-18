@@ -414,24 +414,64 @@
                                     <textarea class="form-control" id="message" rows="4" placeholder="Введите ваше сообщение" required></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Отправить сообщение</button>
+
+                                <div id="alertPlaceholder" class="mt-3"></div>
                             </form>
                              <script>
                                 document.getElementById('contactForm').addEventListener('submit', async (e) => {
                                     e.preventDefault();
-                                    const formData = new FormData(e.target);
-
+                                    
+                                    const form = e.target;
+                                    const formData = new FormData(form);
+                                    const submitBtn = form.querySelector('button[type="submit"]');
+                                    
+                                    // Блокируем кнопку при отправке
+                                    submitBtn.disabled = true;
+                                    submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Отправка...';
+                                    
                                     try {
                                         const response = await fetch('/send_message', {
                                             method: 'POST',
                                             body: formData
                                         });
+                                        
                                         const result = await response.json();
-                                        alert(result.message);
+                                        
+                                        // Показываем уведомление
+                                        showAlert(result.status === 'success' ? 'success' : 'danger', 
+                                                result.message || (result.status === 'success' ? 'Сообщение отправлено!' : 'Ошибка отправки'));
+                                        
+                                        if (result.status === 'success') {
+                                            form.reset(); // Очищаем форму при успехе
+                                        }
                                     } catch (error) {
-                                        alert("Ошибка: " + error);
+                                        showAlert('danger', 'Ошибка сети: ' + error.message);
+                                    } finally {
+                                        submitBtn.disabled = false;
+                                        submitBtn.textContent = 'Отправить сообщение';
                                     }
                                 });
-                             </script>                                    
+
+                                // Функция для показа уведомлений
+                                function showAlert(type, message) {
+                                    const alertDiv = document.createElement('div');
+                                    alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+                                    alertDiv.innerHTML = `
+                                        ${message}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    `;
+                                    
+                                    const placeholder = document.getElementById('alertPlaceholder');
+                                    placeholder.innerHTML = '';
+                                    placeholder.appendChild(alertDiv);
+                                    
+                                    // Автоматическое закрытие через 5 секунд
+                                    setTimeout(() => {
+                                        alertDiv.classList.remove('show');
+                                        alertDiv.classList.add('fade');
+                                    }, 5000);
+                                }
+                            </script>                                  
                         </div>
                     </div>
                 </div>
