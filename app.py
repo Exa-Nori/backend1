@@ -10,16 +10,16 @@ def index():
 @app.route("/api/send-to-telegram", methods=["POST"])
 def send_to_telegram():
     bot_token = "7585621279:AAFLcwzw-lrh5PCHvgGZqZ6lG-TIPlwXZZo"
-    chat_id = "719874188"   # Укажите свой Telegram Chat ID.
+    chat_id = "<YOUR_CHAT_ID>"  # Укажите корректный chat ID
 
-    # Получение данных из запроса
+    # Получение данных из формы
     data = request.json
     if not data or 'name' not in data or 'message' not in data:
-        return jsonify({"error": "Обязательные поля: name и message."}), 400
+        return jsonify({"error": "Введите обязательные поля: name и message"}), 400
 
-    # Сообщение для Telegram
+    # Формируем сообщение для Telegram
     telegram_message = f"""
-📝 *Новая заявка с формы сайта:*
+📝 *Новая заявка с формы сайта* 📝
 👤 *Имя*: {data['name']}
 📧 *Email*: {data.get('email', 'Не указан')}
 💬 *Сообщение*: {data['message']}
@@ -37,9 +37,10 @@ def send_to_telegram():
         if response.status_code == 200:
             return jsonify({"success": True}), 200
         else:
-            return jsonify({"error": response.json()}), 500
+            print("Ошибка API Telegram:", response.json())
+            return jsonify({"error": response.json()}), response.status_code
     except Exception as e:
-        print(f"Ошибка: {e}")
+        print(f"Ошибка при отправке в Telegram: {e}")
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
