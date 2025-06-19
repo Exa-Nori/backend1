@@ -20,27 +20,29 @@ def services():
         ]
     })
 
-# API для отправки данных в Telegram
+# Новый API для отправки данных в Telegram
 @app.route('/api/send-to-telegram', methods=['POST'])
 def send_to_telegram():
-    bot_token = "7585621279:AAFLcwzw-lrh5PCHvgGZqZ6lG-TIPlwXZZo"  # Ваш токен Telegram-бота
-    chat_id = "719874188"  # Замените на ваш chat ID
+    bot_token = "7585621279:AAFLcwzw-lrh5PCHvgGZqZ6lG-TIPlwXZZo"  # Токен бота
+    chat_id = "719874188"  # Укажите правильный chat_id
 
-    # Получение данных из формы
+    # Проверяем входящие данные
     data = request.json
     if not data or 'name' not in data or 'message' not in data:
-        return jsonify({"error": "Необходимо предоставить имя и сообщение"}), 400
+        return jsonify({"error": "Пожалуйста, заполните все поля (name и message)!"}), 400
 
-    # Формируем текст сообщения для Telegram
+    # Формируем сообщение для Telegram
     telegram_message = f"""
 📝 *Новая заявка с формы сайта* 📝
 👤 *Имя*: {data['name']}
-📧 *Email*: {data.get('email', 'Не указано')}
+📧 *Email*: {data.get('email', 'Не указан')}
 💬 *Сообщение*: {data['message']}
     """
 
+    # Печатаем для проверки запросов в логах (поможет с отладкой)
+    print(f"Отправка сообщения: {telegram_message}")
+
     try:
-        # Отправка сообщения в Telegram
         response = requests.post(
             f"https://api.telegram.org/bot{bot_token}/sendMessage",
             json={
@@ -49,8 +51,9 @@ def send_to_telegram():
                 "parse_mode": "Markdown"
             }
         )
+        # Логи успешного отправления
+        print(f"Telegram ответ: {response.json()}")
 
-        # Проверка ответа Telegram API
         if response.status_code == 200:
             return jsonify({"success": True})
         else:
