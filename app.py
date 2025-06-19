@@ -1,61 +1,14 @@
 from flask import Flask, request, jsonify, send_from_directory
-from flask_cors import CORS
-import logging
-from functools import wraps
-import os
 import requests
 
-# Инициализация приложения
-app = Flask(__name__, static_folder='static')
-CORS(app)  # Разрешаем CORS для всех доменов (в разработке)
+app = Flask(__name__, static_folder='public')
 
-# Конфигурация
-app.config.update(
-    SECRET_KEY=os.getenv('FLASK_SECRET_KEY', 'dev-secret-key'),
-    TELEGRAM_BOT_TOKEN=os.getenv('TELEGRAM_BOT_TOKEN'),
-    TELEGRAM_CHAT_ID=os.getenv('TELEGRAM_CHAT_ID')
-)
-
-# Настройка логирования
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger(__name__)
-
-def json_response(f):
-    """Декоратор для стандартизации JSON-ответов"""
-    @wraps(f)
-    def wrapper(*args, **kwargs):
-        try:
-            result = f(*args, **kwargs)
-            return jsonify({
-                "status": "success",
-                "data": result
-            })
-        except ValueError as e:
-            logger.warning(f"Ошибка валидации: {str(e)}")
-            return jsonify({
-                "status": "error",
-                "message": str(e)
-            }), 400
-        except Exception as e:
-            logger.error(f"Ошибка сервера: {str(e)}")
-            return jsonify({
-                "status": "error",
-                "message": "Internal server error"
-            }), 500
-    return wrapper
-
+# Главная страница
 @app.route('/')
-def serve_index():
+def index():
     return send_from_directory(app.static_folder, 'index.html')
 
-@app.route('/api/health')
-def health_check():
-    """Проверка работоспособности API"""
-    return jsonify({"status": "healthy"})
-
+# API для отправки услуг (пример существующего роута)
 @app.route('/api/services', methods=['GET'])
 def services():
     return jsonify({
@@ -67,53 +20,38 @@ def services():
         ]
     })
 
-@app.route('/api/contact', methods=['POST'])
-@json_response
-def send_contact_message():
-    """Обработка контактной формы"""
-    # Получаем данные в формате JSON или form-data
-    data = request.get_json() if request.is_json else request.form
-    
-    # Валидация
-    required_fields = ['name', 'email', 'message']
-    if not all(field in data for field in required_fields):
-        raise ValueError("Не заполнены все обязательные поля")
+# Новый API роут для отправки данных в Telegram
+@app.route('/api/send-to-telegram', methods=['POST'])
+def send_to_telegram():     
+    bot_token = "7585621279:AAFLcwzw-lrh5PCHvgGZqZ6lG-TIPlwXZZo"
+    chat_id = "719874188"  # Замените на ваш chat ID из Telegram
+    data = request.json
 
-    # Отправка в Telegram
-    text = f"""
-    📩 Новый контакт с сайта:
-    ├ Имя: {data['name']}
-    ├ Email: {data['email']}
-    └ Сообщение: {data['message']}
+    # Проверяем, что все поля заполнены
+    if not all(key in data for key in ("name", "email", "message")):
+        return jsonify({'error': "Все поля обязательны!"}), 400
+
+    # Формируем сообщение для Telegram
+    telegram_message = f"""
+📝 *Новая заявка с формы сайта* 📝
+👤 *Имя*: {data['name']}
+📧 *Email*: {data['email']}
+💬 *Сообщение*: {data['message']}
     """
-    
-    telegram_url = f"https://api.telegram.org/bot{app.config['TELEGRAM_BOT_TOKEN']}/sendMessage"
-    response = requests.post(
-        telegram_url,
-        json={
-            "chat_id": app.config['TELEGRAM_CHAT_ID'],
-            "text": text,
-            "parse_mode": "HTML"
-        },
-        timeout=10
-    )
-    response.raise_for_status()
 
-    return {"message": "Ваше сообщение успешно отправлено"}
+    # Отправляем сообщение в Telegram
+    url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
+    response = requests.post(url, json={
+        'chat_id': chat_id,
+        'text': telegram_message,
+        'parse_mode': 'Markdown'
+    })
 
-@app.errorhandler(404)
-def not_found(error):
-    return jsonify({
-        "status": "error",
-        "message": "Ресурс не найден"
-    }), 404
+    if response.status_code == 200:
+        return jsonify({'success': True})
+    else:
+        return jsonify({'error': "Не удалось отправить сообщение!"}), 500
+
 
 if __name__ == '__main__':
-    # Запуск сервера
-    app.run(
-        host=os.getenv('FLASK_HOST', '0.0.0.0'),
-        port=int(os.getenv('FLASK_PORT', 5000)),
-        debug=os.getenv('FLASK_DEBUG', 'False') == 'True'
-    )
-
-    
+    app.run(host='0.0.0.0', port=5000)
