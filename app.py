@@ -1,44 +1,32 @@
-from flask import Flask, send_from_directory, request, jsonify
+import json
+from flask import Flask, request, jsonify
 import requests
 
-app = Flask(__name__, static_folder="public")
+# Загрузка конфигурации из JSON
+with open('config.json') as config_file:
+    config = json.load(config_file)
 
-@app.route("/")
-def index():
-    return send_from_directory(app.static_folder, "index.html")
+BOT_TOKEN = config['telegram_token']
+CHAT_ID = config['chat_id']
+
+app = Flask(__name__)
+
 @app.route('/api/send-to-telegram', methods=['POST'])
 def send_to_telegram():
-    bot_token = "6847127004:AAHJ8N5td3PAm40KJh2kY_2rMoCI72th4qg"
-    chat_id = "719874188"
-
     data = request.json
     if not data or 'name' not in data or 'message' not in data:
-        return jsonify({"error": "Пожалуйста, заполните name и message"}), 400
+        return jsonify({"error": "Поля name и message обязательны"}), 400
 
-    telegram_message = f"""
-    📝 Новое сообщение
-    👤 Имя: {data['name']}
-    💬 Сообщение: {data['message']}
-    """
+    telegram_message = f"📝 Новое сообщение\n👤 Имя: {data['name']}\n💬 Сообщение: {data['message']}"
     response = requests.post(
-        f"https://api.telegram.org/bot{bot_token}/sendMessage",
-        json={"chat_id": chat_id, "text": telegram_message}
+        f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
+        json={"chat_id": CHAT_ID, "text": telegram_message}
     )
-    return jsonify({"success": True}) if response.status_code == 200 else jsonify({"error": "Ошибка отправки!"}), 500
 
-from flask_compress import Compress
+    if response.status_code == 200:
+        return jsonify({"success": True}), 200
+    else:
+        return jsonify({"error": "Не удалось отправить сообщение"}), 500
 
-Compress(app)
-
-import logging
-logging.basicConfig(level=logging.DEBUG)
-
-@app.route('/api/send-to-telegram', methods=['POST'])
-def send_to_telegram():
-    ...
-    response = requests.post(
-        f"https://api.telegram.org/bot{bot_token}/sendMessage",
-        json={"chat_id": chat_id, "text": telegram_message}
-    )
-    logging.debug(f"Telegram API Response: {response.status_code}, {response.text}")
-    return jsonify({"success": True}) if response.status_code == 200 else jsonify({"error": response.text}), 500
+if __name__ == '__main__':
+    app.run()
