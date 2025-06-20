@@ -33,3 +33,12 @@ Compress(app)
 import logging
 logging.basicConfig(level=logging.DEBUG)
 
+@app.route('/api/send-to-telegram', methods=['POST'])
+def send_to_telegram():
+    ...
+    response = requests.post(
+        f"https://api.telegram.org/bot{bot_token}/sendMessage",
+        json={"chat_id": chat_id, "text": telegram_message}
+    )
+    logging.debug(f"Telegram API Response: {response.status_code}, {response.text}")
+    return jsonify({"success": True}) if response.status_code == 200 else jsonify({"error": response.text}), 500
