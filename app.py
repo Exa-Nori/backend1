@@ -24,4 +24,4 @@ def send_to_telegram():
         f"https://api.telegram.org/bot{bot_token}/sendMessage",
         json={"chat_id": chat_id, "text": telegram_message}
     )
-    return jsonify({"success": True}) if response.status_code == 200 else jsonify({"error": "Ошибка отправки"}), 500
+    return jsonify({"success": True}) if response.status_code == 200 else jsonify({"error": "Ошибка отправки!"}), 500
