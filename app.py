@@ -25,3 +25,7 @@ def send_to_telegram():
         json={"chat_id": chat_id, "text": telegram_message}
     )
     return jsonify({"success": True}) if response.status_code == 200 else jsonify({"error": "Ошибка отправки!"}), 500
+
+from flask_compress import Compress
+
+Compress(app)
