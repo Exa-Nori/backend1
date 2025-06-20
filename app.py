@@ -1,3 +1,11 @@
+from flask import Flask, send_from_directory, request, jsonify
+import requests
+
+app = Flask(__name__, static_folder="public")
+
+@app.route("/")
+def index():
+    return send_from_directory(app.static_folder, "index.html")
 import json
 from flask import Flask, request, jsonify
 import requests
@@ -30,3 +38,11 @@ def send_to_telegram():
 
 if __name__ == '__main__':
     app.run()
+    
+from flask_compress import Compress
+
+Compress(app)
+
+import logging
+logging.basicConfig(level=logging.DEBUG)
+
