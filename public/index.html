@@ -556,3 +556,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Form</title>
 </head>
+
+
+<form id="contactForm">
+    <input type="text" name="name" placeholder="Ваше имя" required>
+    <textarea name="message" placeholder="Сообщение" required></textarea>
+    <button type="submit">Отправить</button>
+</form>
+<div id="result"></div>
+<script>
+document.getElementById('contactForm').onsubmit = async function(e) {
+    e.preventDefault();
+    const name = this.name.value;
+    const message = this.message.value;
+    const res = await fetch('/api/send-to-telegram', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({name, message})
+    });
+    const data = await res.json();
+    document.getElementById('result').textContent = data.success
+        ? 'Сообщение отправлено!'
+        : ('Ошибка: ' + (data.error || ''));
+};
+</script>
