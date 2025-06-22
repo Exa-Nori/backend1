@@ -1,5 +1,23 @@
 from flask import Flask, send_from_directory, request, jsonify
 import requests
+
+
+
+
+from flask import Flask, send_from_directory
+app = Flask(__name__, static_folder='public')
+@app.route('/')
+def main():
+    return send_from_directory(app.static_folder, 'index.html')
+@app.route('/About.html')
+def about():
+    return send_from_directory(app.static_folder, 'About.html')
+# универсальный роут для любой статики:
+@app.route('/<path:path>')
+def static_proxy(path):
+    return send_from_directory(app.static_folder, path)
+
+
 app = Flask(__name__, static_folder="public")
 @app.route("/")
 def index():
