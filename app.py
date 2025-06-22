@@ -1,8 +1,6 @@
 from flask import Flask, send_from_directory, request, jsonify
 import requests
-
 app = Flask(__name__, static_folder="public")
-
 @app.route("/")
 def index():
     return send_from_directory(app.static_folder, "index.html")
@@ -26,13 +24,6 @@ def send_to_telegram():
     )
     return jsonify({"success": True}) if response.status_code == 200 else jsonify({"error": "Ошибка отправки!"}), 500
 
-from flask_compress import Compress
-
-Compress(app)
-
-import logging
-logging.basicConfig(level=logging.DEBUG)
-
-@app.route("/<path:path>")
+@app.route('/<path:path>')
 def static_proxy(path):
     return send_from_directory(app.static_folder, path)
