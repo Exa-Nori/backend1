@@ -32,3 +32,7 @@ Compress(app)
 
 import logging
 logging.basicConfig(level=logging.DEBUG)
+
+@app.route("/<path:path>")
+def static_proxy(path):
+    return send_from_directory(app.static_folder, path)
