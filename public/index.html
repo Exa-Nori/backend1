@@ -260,6 +260,18 @@
         .list-inline-item:not(:last-child) {
             margin-right: 15px;
         }
+
+        /* Loading spinner */
+        .spinner-border-sm {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        /* Form feedback styles */
+        .alert {
+            border-radius: 8px;
+            border: none;
+        }
         
         @media (max-width: 768px) {
             .hero-section {
@@ -402,38 +414,23 @@
                             <h3 class="mb-4">Напишите нам</h3>
                             <form id="contactForm">
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">Ваше имя</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Введите ваше имя" required>
+                                    <label for="name" class="form-label">Ваше имя *</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Введите ваше имя" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" placeholder="Введите ваш email" required>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Введите ваш email">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="message" class="form-label">Сообщение</label>
-                                    <textarea class="form-control" id="message" rows="4" placeholder="Введите ваше сообщение" required></textarea>
+                                    <label for="message" class="form-label">Сообщение *</label>
+                                    <textarea class="form-control" id="message" name="message" rows="4" placeholder="Введите ваше сообщение" required></textarea>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Отправить сообщение</button>
-
-                                <div id="alertPlaceholder" class="mt-3"></div>
+                                <button type="submit" class="btn btn-primary" id="submitBtn">
+                                    <span class="btn-text">Отправить сообщение</span>
+                                    <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                </button>
+                                <div id="formFeedback" class="mt-3"></div>
                             </form>
-                             <script>
-                                document.getElementById('contactForm').onsubmit = async function(e) {
-                                    e.preventDefault();
-                                    
-                                    const name = this.name.value;
-                                    const message = this.message.value;
-                                    const res = await fetch('/api/send-to-telegram', {
-                                        method: 'POST',
-                                        headers: {'Content-Type': 'application/json'},
-                                        body: JSON.stringify({name, message})
-                                    });
-                                    const data = await res.json();
-                                    document.getElementById('result').textContent = data.success
-                                        ? 'Сообщение отправлено!'
-                                        : ('Ошибка: ' + (data.error || ''));
-                                    };
-                            </script>                                  
                         </div>
                     </div>
                 </div>
@@ -505,13 +502,12 @@
         </div>
     </footer>
 
-
     <!-- Скрипты -->
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
     <script>
-        // Изменение навигации при скроллец
+        // Изменение навигации при скроллe
         window.addEventListener('scroll', function() {
             if (window.scrollY > 50) {
                 document.querySelector('.navbar').classList.add('scrolled');
@@ -546,14 +542,75 @@
                 });
             }, 100);
         });
+
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const btnText = submitBtn.querySelector('.btn-text');
+            const spinner = submitBtn.querySelector('.spinner-border');
+            const feedback = document.getElementById('formFeedback');
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                message: document.getElementById('message').value.trim(),
+                timestamp: new Date().toLocaleString('ru-RU')
+            };
+            
+            // Validate required fields
+            if (!formData.name || !formData.message) {
+                showFeedback('Пожалуйста, заполните все обязательные поля.', 'danger');
+                return;
+            }
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            btnText.textContent = 'Отправляем...';
+            spinner.classList.remove('d-none');
+            feedback.innerHTML = '';
+            
+            try {
+                const response = await fetch('/api/send-to-telegram', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    showFeedback('✅ Сообщение успешно отправлено! Мы свяжемся с вами в ближайшее время.', 'success');
+                    // Reset form
+                    document.getElementById('contactForm').reset();
+                } else {
+                    throw new Error(data.error || 'Произошла ошибка при отправке');
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                showFeedback('❌ Произошла ошибка при отправке сообщения. Пожалуйста, попробуйте позже или свяжитесь с нами по телефону.', 'danger');
+            } finally {
+                // Reset button state
+                submitBtn.disabled = false;
+                btnText.textContent = 'Отправить сообщение';
+                spinner.classList.add('d-none');
+            }
+        });
+        
+        function showFeedback(message, type) {
+            const feedback = document.getElementById('formFeedback');
+            feedback.innerHTML = `
+                <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            `;
+        }
     </script>
 </body>
 </html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Form</title>
-</head>
-

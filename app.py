@@ -18,24 +18,45 @@ def send_to_telegram():
 
     data = request.get_json()
     if not data or 'name' not in data or 'message' not in data:
-        return jsonify({"error": "Пожалуйста, заполните name и message"}), 400
+        return jsonify({"error": "Пожалуйста, заполните имя и сообщение"}), 400
 
-    telegram_message = f"""📝 Новое сообщение
-👤 Имя: {data['name']}
+    # Include email if provided
+    email_text = f"\n📧 Email: {data['email']}" if data.get('email') else ""
+    
+    telegram_message = f"""📝 Новое сообщение с сайта L'ÎLE DE RÊVE
+
+👤 Имя: {data['name']}{email_text}
 💬 Сообщение: {data['message']}
-"""
-    response = requests.post(
-        f"https://api.telegram.org/bot{bot_token}/sendMessage",
-        json={"chat_id": chat_id, "text": telegram_message}
-    )
-    # Логируем ответ Телеграма
-    logging.debug(f"Telegram API Response: {response.status_code}, {response.text}")
-    # Возвращаем текст ответа Telegram в error для отладки
-    if response.status_code == 200:
-        return jsonify({"success": True})
-    else:
-        return jsonify({"error": response.text}), 500
+
+---
+Отправлено: {data.get('timestamp', 'не указано')}"""
+
+    try:
+        response = requests.post(
+            f"https://api.telegram.org/bot{bot_token}/sendMessage",
+            json={"chat_id": chat_id, "text": telegram_message},
+            timeout=10
+        )
+        
+        # Логируем ответ Телеграма
+        logging.debug(f"Telegram API Response: {response.status_code}, {response.text}")
+        
+        if response.status_code == 200:
+            return jsonify({"success": True, "message": "Сообщение успешно отправлено!"})
+        else:
+            logging.error(f"Telegram API Error: {response.text}")
+            return jsonify({"error": "Ошибка при отправке сообщения в Telegram"}), 500
+            
+    except requests.exceptions.RequestException as e:
+        logging.error(f"Request Exception: {str(e)}")
+        return jsonify({"error": "Ошибка соединения с Telegram"}), 500
+    except Exception as e:
+        logging.error(f"Unexpected error: {str(e)}")
+        return jsonify({"error": "Произошла неожиданная ошибка"}), 500
 
 @app.route('/<path:path>')
 def static_proxy(path):
     return send_from_directory(app.static_folder, path)
+
+if __name__ == '__main__':
+    app.run(debug=True)
