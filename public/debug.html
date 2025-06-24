@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Bot Debug - L'ÎLE DE RÊVE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Telegram Bot Diagnostic Tool</h1>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Test Bot Connection</h5>
+                    </div>
+                    <div class="card-body">
+                        <button id="testBot" class="btn btn-primary">Test Telegram Bot</button>
+                        <div id="botTestResult" class="mt-3"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Find Chat ID</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="small text-muted">Send a message to your bot first, then click this button</p>
+                        <button id="getChatId" class="btn btn-info">Get Available Chat IDs</button>
+                        <div id="chatIdResult" class="mt-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Setup Instructions</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6>How to set up your Telegram bot:</h6>
+                        <ol>
+                            <li><strong>Create a bot:</strong>
+                                <ul>
+                                    <li>Open Telegram and search for <code>@BotFather</code></li>
+                                    <li>Send <code>/newbot</code></li>
+                                    <li>Follow the instructions to create your bot</li>
+                                    <li>Copy the bot token</li>
+                                </ul>
+                            </li>
+                            <li><strong>Get your Chat ID:</strong>
+                                <ul>
+                                    <li>Send a message to your bot</li>
+                                    <li>Click "Get Available Chat IDs" above</li>
+                                    <li>Find your chat ID in the results</li>
+                                </ul>
+                            </li>
+                            <li><strong>Update your code:</strong>
+                                <ul>
+                                    <li>Replace the BOT_TOKEN in app.py</li>
+                                    <li>Replace the CHAT_ID in app.py</li>
+                                </ul>
+                            </li>
+                        </ol>
+                        
+                        <div class="alert alert-warning mt-3">
+                            <strong>Current Configuration:</strong><br>
+                            Bot Token: 6847127004:AAHJ8N5td3PAm40KJh2kY_2rMoCI72th4qg<br>
+                            Chat ID: 719874188
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('testBot').addEventListener('click', async function() {
+            const button = this;
+            const resultDiv = document.getElementById('botTestResult');
+            
+            button.disabled = true;
+            button.textContent = 'Testing...';
+            resultDiv.innerHTML = '<div class="spinner-border spinner-border-sm" role="status"></div> Testing bot connection...';
+            
+            try {
+                const response = await fetch('/api/test-telegram');
+                const data = await response.json();
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `
+                        <div class="alert alert-success">
+                            <h6>✅ Bot is working!</h6>
+                            <p><strong>Bot Name:</strong> ${data.bot_info.first_name || 'N/A'}</p>
+                            <p><strong>Bot Username:</strong> @${data.bot_info.username || 'N/A'}</p>
+                            <p><strong>Chat ID:</strong> ${data.chat_id}</p>
+                            <p class="mb-0">Test message sent successfully!</p>
+                        </div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="alert alert-danger">
+                            <h6>❌ Bot test failed</h6>
+                            <p><strong>Error:</strong> ${data.error}</p>
+                            <details>
+                                <summary>Technical details</summary>
+                                <pre class="mt-2">${JSON.stringify(data, null, 2)}</pre>
+                            </details>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="alert alert-danger">
+                        <h6>❌ Network error</h6>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            } finally {
+                button.disabled = false;
+                button.textContent = 'Test Telegram Bot';
+            }
+        });
+        
+        document.getElementById('getChatId').addEventListener('click', async function() {
+            const button = this;
+            const resultDiv = document.getElementById('chatIdResult');
+            
+            button.disabled = true;
+            button.textContent = 'Getting Chat IDs...';
+            resultDiv.innerHTML = '<div class="spinner-border spinner-border-sm" role="status"></div> Fetching chat IDs...';
+            
+            try {
+                const response = await fetch('/api/get-chat-id');
+                const data = await response.json();
+                
+                if (response.ok) {
+                    let chatList = '';
+                    if (data.available_chats.length > 0) {
+                        chatList = data.available_chats.map(chat => `
+                            <li class="list-group-item">
+                                <strong>Chat ID:</strong> ${chat.chat_id}<br>
+                                <strong>Type:</strong> ${chat.chat_type}<br>
+                                ${chat.first_name ? `<strong>Name:</strong> ${chat.first_name} ${chat.last_name || ''}<br>` : ''}
+                                ${chat.username ? `<strong>Username:</strong> @${chat.username}<br>` : ''}
+                                ${chat.title ? `<strong>Title:</strong> ${chat.title}<br>` : ''}
+                            </li>
+                        `).join('');
+                    } else {
+                        chatList = '<li class="list-group-item text-muted">No recent messages found. Send a message to your bot first.</li>';
+                    }
+                    
+                    resultDiv.innerHTML = `
+                        <div class="alert alert-info">
+                            <h6>Available Chat IDs:</h6>
+                            <p><strong>Current Chat ID:</strong> ${data.current_chat_id}</p>
+                            <p><strong>Total Updates:</strong> ${data.total_updates}</p>
+                        </div>
+                        <ul class="list-group">
+                            ${chatList}
+                        </ul>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="alert alert-danger">
+                            <h6>❌ Failed to get chat IDs</h6>
+                            <p>${data.error}</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="alert alert-danger">
+                        <h6>❌ Network error</h6>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            } finally {
+                button.disabled = false;
+                button.textContent = 'Get Available Chat IDs';
+            }
+        });
+    </script>
+</body>
+</html>
