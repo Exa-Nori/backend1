@@ -10,7 +10,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 # You should move these to environment variables for security
 BOT_TOKEN = "7585621279:AAFLcwzw-lrh5PCHvgGZqZ6lG-TIPlwXZZo"
-CHAT_ID = "719874188"
+CHAT_ID = "5682979333"
 
 @app.route("/")
 def index():
