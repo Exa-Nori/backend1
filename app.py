@@ -9,7 +9,7 @@ Compress(app)
 logging.basicConfig(level=logging.DEBUG)
 
 # You should move these to environment variables for security
-BOT_TOKEN = "6847127004:AAHJ8N5td3PAm40KJh2kY_2rMoCI72th4qg"
+BOT_TOKEN = "7585621279:AAFLcwzw-lrh5PCHvgGZqZ6lG-TIPlwXZZo"
 CHAT_ID = "719874188"
 
 @app.route("/")
