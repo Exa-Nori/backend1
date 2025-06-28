@@ -16,6 +16,14 @@ CHAT_ID = "5682979333"
 def index():
     return send_from_directory(app.static_folder, "index.html")
 
+@app.route("/sitemap.xml")
+def sitemap():
+    return send_from_directory(app.static_folder, "sitemap.xml", mimetype='application/xml')
+
+@app.route("/robots.txt")
+def robots():
+    return send_from_directory(app.static_folder, "robots.txt", mimetype='text/plain')
+
 @app.route('/api/test-telegram', methods=['GET'])
 def test_telegram():
     """Test endpoint to check if Telegram bot is working"""
