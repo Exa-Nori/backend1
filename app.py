@@ -3,19 +3,14 @@ import requests
 import logging
 from flask_compress import Compress
 import os
-import configparser
 
 app = Flask(__name__, static_folder="public")
 Compress(app)
 logging.basicConfig(level=logging.DEBUG)
 
-# Load configuration from config.ini
-config = configparser.ConfigParser()
-config.read('config.ini')
-
-# Get Telegram credentials from config file
-BOT_TOKEN = config.get('TELEGRAM', 'BOT_TOKEN')
-CHAT_ID = config.get('TELEGRAM', 'CHAT_ID')
+# You should move these to environment variables for security
+BOT_TOKEN = "7585621279:AAFLcwzw-lrh5PCHvgGZqZ6lG-TIPlwXZZo"
+CHAT_ID = "5682979333"
 
 @app.route("/")
 def index():
