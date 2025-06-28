@@ -8,7 +8,7 @@ app = Flask(__name__, static_folder="public")
 Compress(app)
 logging.basicConfig(level=logging.DEBUG)
 
-# You should move these to environment variables for security
+# You should move these to environment variables for securit
 BOT_TOKEN = "7585621279:AAFLcwzw-lrh5PCHvgGZqZ6lG-TIPlwXZZo"
 CHAT_ID = "5682979333"
 
