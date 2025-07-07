@@ -124,48 +124,6 @@
     }
     </script>
     
-    <!-- FAQ Schema.org Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "Какие услуги предоставляет патронажная служба L'ÎLE DE RÊVE?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Мы предоставляем полный спектр патронажных услуг: уход за пожилыми людьми, медицинский уход на дому, бытовую помощь и психологическую поддержку. Работаем круглосуточно по Москве и области."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "В каких районах Москвы работает патронажная служба?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Мы работаем по всей Москве и ближайшему Подмосковью. Офис находится по адресу: г. Москва, ул. Чертановская, д. 7А, помещ. 26."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Как связаться с патронажной службой?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Вы можете связаться с нами по телефонам: +7 499 911-24-24, +7 999 111-90-09, через форму на сайте или в социальных сетях (Telegram, WhatsApp, Instagram)."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Работает ли патронажная служба круглосуточно?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Да, наша патронажная служба работает круглосуточно, 7 дней в неделю. Мы готовы помочь в любое время дня и ночи."
-                }
-            }
-        ]
-    }
-    </script>
-    
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -407,7 +365,6 @@
             background-color: var(--primary-color);
             color: var(--light-color);
             padding: 30px 0;
-            font-size: 1rem;
         }
         
         footer a {
@@ -446,43 +403,6 @@
             .section {
                 padding: 60px 0;
             }
-            .footer-legal, .footer-links {
-                text-align: center !important;
-            }
-        }
-        .footer-legal {
-            color: var(--light-color);
-            font-size: 0.95rem;
-            margin-top: 0.5rem;
-            text-align: center;
-            letter-spacing: 0.01em;
-        }
-        .footer-social {
-            margin-top: 1rem;
-            text-align: center;
-        }
-        .footer-social a {
-            color: var(--light-color);
-            margin: 0 0.5rem;
-            font-size: 1.4rem;
-            transition: color 0.2s;
-        }
-        .footer-social a:hover {
-            color: var(--secondary-color);
-        }
-        .footer-links {
-            text-align: center;
-            margin: 0.5rem 0 0.5rem 0;
-        }
-        .footer-links a {
-            color: var(--light-color);
-            margin: 0 0.7rem;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-        .footer-links a:hover {
-            color: var(--secondary-color);
         }
     </style>
 </head>
@@ -619,7 +539,11 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Введите ваш email"required>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Введите ваш email">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">Телефон *</label>
+                                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Введите ваш номер телефона" required pattern="^\\+?7[0-9]{10}$|^8[0-9]{10}$">
                                 </div>
                                 <div class="mb-3">
                                     <label for="message" class="form-label">Сообщение *</label>
@@ -684,26 +608,20 @@
    <!-- Футер -->
     <footer class="text-center">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-4 mb-4 mb-lg-0 text-lg-start text-center">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0 text-lg-start">
                     <img src="sminilogo-round.png" alt="Logo" style="height: 40px; margin-right: 10px;" loading="eager">L'ÎLE DE RÊVE
                 </div>
-                <div class="col-lg-4 mb-4 mb-lg-0 footer-links">
-                    <a href="https://lile-des-reves.com#services">Услуги</a>
-                    <a href="About.html">О нас</a>
-                    <a href="https://lile-des-reves.com#contacts">Контакты</a>
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item"><a href="https://lile-des-reves.com#services">Услуги</a></li>
+                        <li class="list-inline-item"><a href="About.html">О нас</a></li>
+                        <li class="list-inline-item"><a href="https://lile-des-reves.com#contacts">Контакты</a></li>
+                    </ul>
                 </div>
-                <div class="col-lg-4 text-lg-end text-center">
-                    <div class="footer-legal">
-                        © 2025 L'ÎLE DE RÊVE. Все права защищены.<br>
-                        <strong>ООО "ИЛЬ ДЕ РЕВ"</strong> | ОГРН: 1257700221624 | ИНН: 9726098578
-                    </div>
+                <div class="col-lg-4 text-lg-end">
+                    <p class="small mb-0">© 2025 L'ÎLE DE RÊVE. Все права защищены.</p>
                 </div>
-            </div>
-            <div class="footer-social">
-                <a href="https://t.me/liledereve" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
-                <a href="https://wa.me/74999912424" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://www.instagram.com/liledereve_" title="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
     </footer>
@@ -762,13 +680,21 @@
             const formData = {
                 name: document.getElementById('name').value.trim(),
                 email: document.getElementById('email').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
                 message: document.getElementById('message').value.trim(),
                 timestamp: new Date().toLocaleString('ru-RU')
             };
             
             // Validate required fields
-            if (!formData.name || !formData.message) {
+            if (!formData.name || !formData.phone || !formData.message) {
                 showFeedback('Пожалуйста, заполните все обязательные поля.', 'danger');
+                return;
+            }
+            
+            // Проверка телефона
+            const phonePattern = /^\+?7[0-9]{10}$|^8[0-9]{10}$/;
+            if (!phonePattern.test(formData.phone)) {
+                showFeedback('Пожалуйста, введите корректный номер телефона (например, +79991112233 или 89991112233).', 'danger');
                 return;
             }
             
@@ -820,4 +746,3 @@
     </script>
 </body>
 </html>
-
