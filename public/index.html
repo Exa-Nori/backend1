@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -126,6 +125,8 @@
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
@@ -393,6 +394,39 @@
             border: none;
         }
         
+        /* Стили для блока тарифов и услуг */
+        #services .card {
+            min-height: 420px;
+            border-radius: 2rem !important;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.10);
+            padding-top: 20px;
+            padding-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: stretch;
+        }
+        #services .card-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        #services ul {
+            font-size: 1.15rem;
+        }
+        #services .fw-bold.fs-5 {
+            font-size: 2rem !important;
+        }
+        #services .badge {
+            font-size: 1rem;
+            padding: 0.5em 1em;
+            border-radius: 1em;
+        }
+        #services .btn {
+            font-size: 1.15rem;
+            border-radius: 2rem;
+            padding: 0.75em 1.5em;
+        }
+        
         @media (max-width: 768px) {
             .hero-section {
                 padding: 100px 0 80px;
@@ -419,7 +453,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#services">Услуги</a>
+                        <a class="nav-link" href="all-services.html">Услуги</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="About.html">О нас</a>
@@ -450,50 +484,136 @@
     <!-- Услуги -->
     <section class="section" id="services">
         <div class="container">
-            <h2 class="section-title">Наши Услуги</h2>
-            <div class="row">
+            <h2 class="section-title">Тарифные пакеты и услуги</h2>
+            <div class="row justify-content-center">
+                <!-- Пакет Базовый комфорт -->
                 <div class="col-md-6 col-lg-3 mb-4">
-                    <div class="service-card text-center">
-                        <div class="service-icon">
-                            <i class="fas fa-user-nurse"></i>
+                    <div class="card border-0 shadow h-100 text-center bg-white">
+                        <div class="card-body d-flex flex-column align-items-center">
+                            <div class="mb-3 display-4 text-primary">
+                                <i class="bi bi-house-heart"></i>
+                            </div>
+                            <h4 class="card-title mb-2">Базовый комфорт</h4>
+                            <ul class="list-unstyled small mb-3">
+                                <li>10 часов ухода в неделю</li>
+                                <li>2 медицинские процедуры</li>
+                                <li>Помощь по дому (уборка, покупки)</li>
+                            </ul>
+                            <p class="mt-2 text-secondary" style="font-size:1.08rem;">Если нужно регулярное сопровождение, но не требуется круглосуточный уход</p>
+                            <div class="mb-2">
+                                <span class="text-decoration-line-through text-muted">25 000</span>
+                                <span class="fw-bold fs-5">19 900 ₽</span>
+                                <span class="badge bg-success">-20%</span>
+                            </div>
+                            <button class="btn btn-outline-primary w-100 mt-auto order-btn" data-title="Базовый комфорт" data-price="19900">Заказать</button>
                         </div>
-                        <h4>Уход за пожилыми</h4>
-                        <p class="mb-0">Индивидуальный подход к каждому подопечному с учетом возрастных особенностей и состояния здоровья</p>
                     </div>
                 </div>
+                <!-- Пакет Полное сопровождение -->
                 <div class="col-md-6 col-lg-3 mb-4">
-                    <div class="service-card text-center">
-                        <div class="service-icon">
-                            <i class="fas fa-medkit"></i>
+                    <div class="card border-0 shadow h-100 text-center bg-white">
+                        <div class="card-body d-flex flex-column align-items-center">
+                            <div class="mb-3 display-4 text-primary">
+                                <i class="bi bi-person-bounding-box"></i>
+                            </div>
+                            <h4 class="card-title mb-2">Полное сопровождение</h4>
+                            <ul class="list-unstyled small mb-3">
+                                <li>Уход 24/7 (5 дней)</li>
+                                <li>Ежедневные процедуры</li>
+                                <li>Реабилитация и отчеты</li>
+                            </ul>
+                            <p class="mt-2 text-secondary" style="font-size:1.08rem;">После операции, для лежачих больных или в период обострения</p>
+                            <div class="mb-2">
+                                <span class="text-decoration-line-through text-muted">75 000</span>
+                                <span class="fw-bold fs-5">59 900 ₽</span>
+                                <span class="badge bg-success">-25%</span>
+                            </div>
+                            <button class="btn btn-outline-primary w-100 mt-auto order-btn" data-title="Полное сопровождение" data-price="59900">Заказать</button>
                         </div>
-                        <h4>Медицинский уход</h4>
-                        <p class="mb-0">Квалифицированный медицинский уход на дому: инъекции, перевязки, контроль приема лекарств</p>
                     </div>
                 </div>
+                <!-- Пакет Передышка для родственников -->
                 <div class="col-md-6 col-lg-3 mb-4">
-                    <div class="service-card text-center">
-                        <div class="service-icon">
-                            <i class="fas fa-home"></i>
+                    <div class="card border-0 shadow h-100 text-center bg-white">
+                        <div class="card-body d-flex flex-column align-items-center">
+                            <div class="mb-3 display-4 text-primary">
+                                <i class="bi bi-cup-hot"></i>
+                            </div>
+                            <h4 class="card-title mb-2">Передышка для родственников</h4>
+                            <ul class="list-unstyled small mb-3">
+                                <li>Временное проживание</li>
+                                <li>Полный уход</li>
+                                <li>Поддержка 24/7</li>
+                            </ul>
+                            <p class="mt-2 text-secondary" style="font-size:1.08rem;">Если нужно отдохнуть или куда-то уехать</p>
+                            <div class="mb-2">
+                                <span class="fw-bold fs-5">32 900 ₽</span>
+                            </div>
+                            <button class="btn btn-outline-primary w-100 mt-auto order-btn" data-title="Передышка для родственников" data-price="32900">Заказать</button>
                         </div>
-                        <h4>Бытовая помощь</h4>
-                        <p class="mb-0">Помощь в ведении домашнего хозяйства, приготовлении пищи, уборке и других бытовых вопросах</p>
                     </div>
                 </div>
+                <!-- Пакет Экстренная помощь -->
                 <div class="col-md-6 col-lg-3 mb-4">
-                    <div class="service-card text-center">
-                        <div class="service-icon">
-                            <i class="fas fa-heart"></i>
+                    <div class="card border-0 shadow h-100 text-center bg-white">
+                        <div class="card-body d-flex flex-column align-items-center">
+                            <div class="mb-3 display-4 text-primary">
+                                <i class="bi bi-lightning-charge"></i>
+                            </div>
+                            <h4 class="card-title mb-2">Экстренная помощь</h4>
+                            <ul class="list-unstyled small mb-3">
+                                <li>Сиделка за 2 часа</li>
+                                <li>Уход, процедуры, сопровождение</li>
+                            </ul>
+                            <p class="mt-2 text-secondary" style="font-size:1.08rem;">Если нужно прямо сейчас</p>
+                            <div class="mb-2">
+                                <span class="fw-bold fs-5">9 900 ₽</span>
+                            </div>
+                            <button class="btn btn-outline-primary w-100 mt-auto order-btn" data-title="Экстренная помощь" data-price="9900">Заказать</button>
                         </div>
-                        <h4>Психологическая поддержка</h4>
-                        <p class="mb-0">Эмоциональная поддержка, общение и сопровождение для улучшения качества жизни</p>
                     </div>
                 </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="all-services.html" class="btn btn-primary btn-lg px-5">Посмотреть все услуги</a>
             </div>
         </div>
     </section>
 
+    <!-- Калькулятор услуг -->
+    <section class="section bg-light" id="service-calculator">
+        <div class="container">
+            <h2 class="section-title mb-4">Калькулятор Услуг</h2>
+            <form id="calcForm" class="row g-3 align-items-end">
+                <div class="col-md-4">
+                    <label for="serviceType" class="form-label">Выберите услугу или пакет</label>
+                    <select class="form-select" id="serviceType" required>
+                        <option value="" disabled selected>Выберите...</option>
+                        <option value="base">Базовый комфорт (10 ч/нед, 2 мед. процедуры, помощь по дому) — 19 900 ₽/мес</option>
+                        <option value="full">Полное сопровождение (24/7, 5 дней) — 59 900 ₽</option>
+                        <option value="rest">Передышка для родственников — 32 900 ₽</option>
+                        <option value="emergency">Экстренная помощь — 9 900 ₽</option>
+                        <option value="single">Разовый патронажный уход (1 час) — 1 500–2 990 ₽</option>
+                        <option value="night">Ночной уход (12 часов) — 4 600–6 100 ₽</option>
+                        <option value="day">Суточный уход (24 часа) — 6 100–8 700 ₽</option>
+                        <option value="med">Медицинские услуги — 2 500–3 000 ₽</option>
+                        <option value="hospital">Сопровождение в больницу — 4 500–5 000 ₽</option>
+                        <option value="social">Социальная помощь — 2 500–3 000 ₽</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="quantity" class="form-label">Количество (часов/дней/месяцев)</label>
+                    <input type="number" class="form-control" id="quantity" min="1" value="1" required>
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-primary w-100">Рассчитать</button>
+                </div>
+            </form>
+            <div id="calcResult" class="mt-4"></div>
+        </div>
+    </section>
     <!-- О нас -->
-    <section class="section bg-light" id="about">
+    <section class="section" id="about">
         <div class="container">
             <h2 class="section-title">О нашей компании</h2>
             <div class="row align-items-center">
@@ -614,7 +734,7 @@
                 </div>
                 <div class="col-lg-4 mb-4 mb-lg-0">
                     <ul class="list-inline mb-0">
-                        <li class="list-inline-item"><a href="https://lile-des-reves.com#services">Услуги</a></li>
+                        <li class="list-inline-item"><a href="all-services.html">Услуги</a></li>
                         <li class="list-inline-item"><a href="About.html">О нас</a></li>
                         <li class="list-inline-item"><a href="https://lile-des-reves.com#contacts">Контакты</a></li>
                     </ul>
@@ -745,5 +865,54 @@
             `;
         }
     </script>
+    <script>
+    // Калькулятор услуг
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('calcForm');
+        const resultDiv = document.getElementById('calcResult');
+        const serviceData = {
+            base: { name: 'Базовый комфорт', price: 19900, old: 25000, unit: 'мес', benefit: 5100 },
+            full: { name: 'Полное сопровождение', price: 59900, old: 75000, unit: 'пакет', benefit: 15100 },
+            rest: { name: 'Передышка для родственников', price: 32900, old: 0, unit: 'пакет', benefit: 0 },
+            emergency: { name: 'Экстренная помощь', price: 9900, old: 0, unit: 'пакет', benefit: 0 },
+            single: { name: 'Разовый патронажный уход (1 час)', price: [1500, 2990], unit: 'час', benefit: 0 },
+            night: { name: 'Ночной уход (12 часов)', price: [4600, 6100], unit: 'смен', benefit: 0 },
+            day: { name: 'Суточный уход (24 часа)', price: [6100, 8700], unit: 'сут', benefit: 0 },
+            med: { name: 'Медицинские услуги', price: [2500, 3000], unit: 'услуг', benefit: 0 },
+            hospital: { name: 'Сопровождение в больницу', price: [4500, 5000], unit: 'поездок', benefit: 0 },
+            social: { name: 'Социальная помощь', price: [2500, 3000], unit: 'услуг', benefit: 0 },
+        };
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const type = form.serviceType.value;
+            const qty = Math.max(1, parseInt(form.quantity.value));
+            const data = serviceData[type];
+            let html = `<h5>${data.name}</h5>`;
+            if (Array.isArray(data.price)) {
+                const min = data.price[0] * qty;
+                const max = data.price[1] * qty;
+                html += `<p>Стоимость: <b>${min.toLocaleString()}–${max.toLocaleString()} ₽</b> за ${qty} ${data.unit}</p>`;
+            } else {
+                const total = data.price * qty;
+                html += `<p>Стоимость: <b>${total.toLocaleString()} ₽</b> за ${qty} ${data.unit}</p>`;
+                if (data.old && data.benefit) {
+                    const oldTotal = data.old * qty;
+                    const benefit = data.benefit * qty;
+                    html += `<p class='text-success'>Ваша выгода: <b>${benefit.toLocaleString()} ₽</b> (старая цена: <span class='text-decoration-line-through text-muted'>${oldTotal.toLocaleString()} ₽</span>)</p>`;
+                }
+            }
+            resultDiv.innerHTML = `<div class='alert alert-info'>${html}</div>`;
+        });
+    });
+    </script>
+    <script>
+document.querySelectorAll('.order-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const title = encodeURIComponent(this.dataset.title);
+    const price = encodeURIComponent(this.dataset.price);
+    window.location.href = `confirm-payment.html?title=${title}&price=${price}`;
+  });
+});
+</script>
 </body>
 </html>
