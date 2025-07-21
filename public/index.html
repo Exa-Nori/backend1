@@ -28,6 +28,20 @@
     <meta name="geo.position" content="55.7558;37.6176">
     <meta name="ICBM" content="55.7558, 37.6176">
     
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://lile-des-reves.com/">
+    
+    <!-- Additional SEO improvements -->
+    <meta name="theme-color" content="#675d53">
+    <meta name="msapplication-TileColor" content="#675d53">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="L'ÎLE DE RÊVE">
+    
+    <!-- Preconnect to external domains for performance -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
     <!-- Business Schema.org Structured Data -->
     <script type="application/ld+json">
     {
@@ -525,7 +539,11 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Введите ваш email"required>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Введите ваш email">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">Телефон *</label>
+                                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Введите ваш номер телефона" required pattern="^\\+?7[0-9]{10}$|^8[0-9]{10}$">
                                 </div>
                                 <div class="mb-3">
                                     <label for="message" class="form-label">Сообщение *</label>
@@ -603,6 +621,7 @@
                 </div>
                 <div class="col-lg-4 text-lg-end">
                     <p class="small mb-0">© 2025 L'ÎLE DE RÊVE. Все права защищены.</p>
+                    <p class="small mb-0 ">ООО "ИЛЬ ДЕ РЕВ" | ОГРН 1257700221624 | ИНН 9726098578</p>
                 </div>
             </div>
         </div>
@@ -662,13 +681,21 @@
             const formData = {
                 name: document.getElementById('name').value.trim(),
                 email: document.getElementById('email').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
                 message: document.getElementById('message').value.trim(),
                 timestamp: new Date().toLocaleString('ru-RU')
             };
             
             // Validate required fields
-            if (!formData.name || !formData.message) {
+            if (!formData.name || !formData.phone || !formData.message) {
                 showFeedback('Пожалуйста, заполните все обязательные поля.', 'danger');
+                return;
+            }
+            
+            // Проверка телефона
+            const phonePattern = /^\+?7[0-9]{10}$|^8[0-9]{10}$/;
+            if (!phonePattern.test(formData.phone)) {
+                showFeedback('Пожалуйста, введите корректный номер телефона (например, +79991112233 или 89991112233).', 'danger');
                 return;
             }
             
