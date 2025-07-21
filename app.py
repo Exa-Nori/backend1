@@ -154,3 +154,5 @@ def static_proxy(path):
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+#Если не работает, откатить до обновлений еблана Артема
