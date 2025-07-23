@@ -150,10 +150,6 @@
                                 <input type="number" class="form-control" id="duration" name="duration" min="1" required>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Срок оказания услуги (например, 1 месяц, 5 дней)</label>
-                                <input type="text" class="form-control" id="period" name="period" required>
-                            </div>
-                            <div class="mb-3">
                                 <label class="form-label">Дата начала</label>
                                 <input type="date" class="form-control" id="date" name="date" required>
                             </div>
@@ -168,7 +164,7 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary btn-lg px-5" style="background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); border: none; border-radius: 50px; font-weight: 600; letter-spacing: 0.5px; transition: all 0.3s ease; color: white;">Подтвердить заказ</button>
+                                <button type="submit" id="submitBtn" class="btn btn-primary btn-lg px-5" style="background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); border: none; border-radius: 50px; font-weight: 600; letter-spacing: 0.5px; transition: all 0.3s ease; color: white;">Подтвердить заказ</button>
                                 <style>
                                 .btn-primary.btn-lg.px-5:hover {
                                     background: linear-gradient(to right, var(--hover-primary), var(--hover-secondary)) !important;
@@ -220,6 +216,84 @@
         alert('Спасибо за заказ! Сейчас вы будете перенаправлены на страницу оплаты.');
         // window.location.href = 'payment.html'; // пример перехода
     });
+    // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const btnText = submitBtn.querySelector('.btn-text');
+            const spinner = submitBtn.querySelector('.spinner-border');
+            const feedback = document.getElementById('formFeedback');
+            
+            // Get form data
+            const formData = {
+                serviceTitle: documet.getElementById('serviceTitle').value.trin(),
+                servicePrice: documet.getElementById('servicePrice').value.trin(),
+                duration: documet.getElementById('duration').value.trin(),
+                name: document.getElementById('name').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                timestamp: new Date().toLocaleString('ru-RU')
+            };
+            
+            // Validate required fields
+            if (!formData.name || !formData.phone ) {
+                showFeedback('Пожалуйста, заполните все обязательные поля.', 'danger');
+                return;
+            }
+            
+            // Проверка телефона
+            const phonePattern = /^\+?7[0-9]{10}$|^8[0-9]{10}$/;
+            if (!phonePattern.test(formData.phone)) {
+                showFeedback('Пожалуйста, введите корректный номер телефона (например, +79991112233 или 89991112233).', 'danger');
+                return;
+            }
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            btnText.textContent = 'Отправляем...';
+            spinner.classList.remove('d-none');
+            feedback.innerHTML = '';
+            
+            try {
+                const response = await fetch('/api/send-to-telegram', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    showFeedback('✅ Сообщение успешно отправлено! Мы свяжемся с вами в ближайшее время.', 'success');
+                    // Reset form
+                    document.getElementById('contactForm').reset();
+                } else {
+                    throw new Error(data.error || 'Произошла ошибка при отправке');
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                showFeedback('❌ Произошла ошибка при отправке сообщения. Пожалуйста, попробуйте позже или свяжитесь с нами по телефону.', 'danger');
+            } finally {
+                // Reset button state
+                submitBtn.disabled = false;
+                btnText.textContent = 'Отправить сообщение';
+                spinner.classList.add('d-none');
+            }
+        });
+        
+        function showFeedback(message, type) {
+            const feedback = document.getElementById('formFeedback');
+            feedback.innerHTML = `
+                <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            `;
+        }
+    </script>
     </script>
     <style>
     .footer-sticky {
