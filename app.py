@@ -9,9 +9,9 @@ app = Flask(__name__, static_folder="public")
 Compress(app)
 logging.basicConfig(level=logging.DEBUG)
 
-# You should move these to environment variables for securit
+# You should move these to environment variables for securit "5682979333"
 BOT_TOKEN = "7585621279:AAFLcwzw-lrh5PCHvgGZqZ6lG-TIPlwXZZo"
-CHAT_ID =  '1158868405' \\"5682979333"
+CHAT_ID =  '1158868405' 
 
 @app.route("/")
 def index():
