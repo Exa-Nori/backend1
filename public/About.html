@@ -9,30 +9,40 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css?v=1.2">
     <style>
-        :root {
-            --primary-color: rgb(103, 93, 83); 
-            --secondary-color: rgba(176, 151, 120, 1); 
-            --light-color: rgba(241, 239, 211, 0.9); 
-            --dark-color: rgba(61, 56, 49, 1); 
-            --hover-primary: rgba(112, 102, 91, 1);
-            --hover-secondary: rgba(156, 134, 107, 1);
-        }
+        /* Специфичные стили только для About.html */
         
-        /* Navbar styles */
-        .navbar {
-            background-color: white;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-        .navbar.scrolled {
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
-        }
+        /* Navigation styles */
         .navbar-brand {
             font-weight: 700;
             color: var(--primary-color) !important;
             font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+        
+        .navbar-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .brand-text {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .navbar-nav {
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        
         .nav-link {
             color: var(--primary-color) !important;
             font-weight: 500;
@@ -40,18 +50,14 @@
             border-radius: 20px;
             transition: all 0.3s ease;
         }
+        
         .nav-link:hover {
             background-color: rgba(176, 151, 120, 0.1);
         }
-        
-        /* Main content padding to account for fixed navbar */
         body {
-            font-family: Georgia, serif;
-            line-height: 1.6;
-            color: var(--dark-color);
             padding-top: 80px; /* Adjusted for navbar height */
             background-color: var(--light-color);
-            margin-top: 30px
+            margin-top: 30px;
         }
         
         .main-container {
@@ -138,28 +144,6 @@
             color: var(--primary-color);
         }
         
-        /* Footer styles */
-        footer {
-            background-color: var(--primary-color);
-            color: var(--light-color);
-            padding: 30px 0;
-            margin-top: 50px;
-        }
-        
-        footer a {
-            color: var(--light-color);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        footer a:hover {
-            color: var(--secondary-color);
-        }
-        
-        .list-inline-item:not(:last-child) {
-            margin-right: 15px;
-        }
-        
         /* Responsive adjustments */
         @media (max-width: 768px) {
             body {
@@ -177,18 +161,18 @@
     </style>
 </head>
 <body>
-     <!-- Навигация -->
+    <!-- Навигация -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-        <div class="container-fluid">
+        <div class="container">
             <a class="navbar-brand" href="https://lile-des-reves.com">
-                <img src="minilogo.png"  width="60px" height="60px" alt="Logo" class="hero-image" loading="eager"></i>L'ÎLE DE RÊVE
+                <img src="minilogo.png" alt="Logo" class="navbar-logo" loading="eager">
+                <span class="brand-text">L'ÎLE DE RÊVE</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav"></div>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="all-services.html">Услуги</a>
                     </li>
@@ -196,7 +180,7 @@
                         <a class="nav-link" href="About.html">О нас</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contacts">Контакты</a>
+                        <a class="nav-link" href="index.html#contacts">Контакты</a>
                     </li>
                 </ul>
             </div>
@@ -268,17 +252,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 mb-4 mb-lg-0 text-lg-start">
-                    <img src="sminilogo-round.png" alt="Logo" style="height: 40px; margin-right: 10px;">L'ÎLE DE RÊVE
+                    <img src="sminilogo-round.png" alt="Logo" style="height: 40px; margin-right: 10px;" loading="eager">L'ÎLE DE RÊVE
                 </div>
                 <div class="col-lg-4 mb-4 mb-lg-0">
                     <ul class="list-inline mb-0">
-                        <li class="list-inline-item"><a href="https://lile-des-reves.com#services">Услуги</a></li>
+                        <li class="list-inline-item"><a href="all-services.html">Услуги</a></li>
                         <li class="list-inline-item"><a href="About.html">О нас</a></li>
                         <li class="list-inline-item"><a href="https://lile-des-reves.com#contacts">Контакты</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4 text-lg-end">
                     <p class="small mb-0">© 2025 L'ÎLE DE RÊVE. Все права защищены.</p>
+                    
                 </div>
             </div>
         </div>

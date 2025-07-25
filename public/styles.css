@@ -1,0 +1,415 @@
+:root {
+    --primary-color: #675d53;
+    --secondary-color: #b09778;
+    --light-color: #f1efd3e6;
+    --dark-color: #3d3831;
+    --hover-primary: #70665b;
+    --hover-secondary: #9c866b;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Georgia, Tahoma, Verdana, serif;
+    line-height: 1.6;
+    color: var(--dark-color);
+    padding-top: 72px;
+    background-color: #f9f8f5;
+}
+
+/* Navigation */
+.navbar {
+    background-color: white;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    padding: 10px 0;
+}
+
+.navbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-collapse {
+    flex-grow: 0;
+}
+
+.navbar-nav {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.navbar.scrolled {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    color: var(--primary-color) !important;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.brand-text {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.nav-link {
+    color: var(--primary-color) !important;
+    font-weight: 500;
+    padding: 8px 15px !important;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: rgba(176, 151, 120, 0.1);
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(190deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 140px 0 100px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-title {
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    font-size: 3.5rem;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.hero-subtitle {
+    opacity: 0.9;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+.hero-image {
+    width: 360px;
+    height: 360px;
+    margin-bottom: 30px;
+    border-radius: 50%;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.hero-image:hover {
+    transform: scale(1.05);
+}
+
+/* Sections */
+.section {
+    padding: 80px 0;
+}
+
+.section-title {
+    position: relative;
+    margin-bottom: 50px;
+    padding-bottom: 15px;
+    color: var(--primary-color);
+    text-align: center;
+    font-weight: 700;
+    font-size: 2.5rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+}
+
+.service-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s ease;
+    padding: 35px 25px;
+    height: 100%;
+    background: white;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+.service-icon {
+    font-size: 2.8rem;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    transition: all 0.3s ease;
+}
+
+/* Основные стили кнопок */
+.btn-primary {
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    border: none;
+    padding: 12px 35px;
+    border-radius: 50px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(to right, var(--hover-primary), var(--hover-secondary)) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(112, 102, 62, 0.422);
+}
+
+.btn-light {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #70663e;
+    transition: all 0.3s ease;
+}
+
+.btn-light:hover {
+    background-color: var(--dark-color) !important;
+    border-color: var(--dark-color) !important; 
+    color: #ffffff !important;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(112, 102, 62, 0.2);
+}
+
+/* Переопределение Bootstrap цветов */
+.btn-outline-primary {
+    --bs-btn-color: var(--primary-color);
+    --bs-btn-border-color: var(--primary-color);
+    --bs-btn-hover-bg: var(--primary-color);
+    --bs-btn-hover-border-color: var(--primary-color);
+    --bs-btn-active-bg: var(--primary-color);
+    --bs-btn-active-border-color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: white !important;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(112, 102, 62, 0.2);
+}
+
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(103, 93, 83, 0.25);
+    outline: 0;
+}
+
+.form-range:focus::-webkit-slider-thumb {
+    box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(103, 93, 83, 0.25);
+}
+
+.form-range:focus::-moz-range-thumb {
+    box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(103, 93, 83, 0.25);
+}
+
+/* Стили для выпадающего меню */
+.form-select option:checked {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+}
+
+.form-select option:hover {
+    background-color: var(--secondary-color) !important;
+    color: white !important;
+}
+
+.form-select option:focus {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+}
+
+.form-select option {
+    background-color: white;
+    color: var(--dark-color);
+}
+
+/* Для веб-кит браузеров (Chrome, Safari) */
+.form-select::-webkit-scrollbar {
+    width: 8px;
+}
+
+.form-select::-webkit-scrollbar-track {
+    background: var(--light-color);
+}
+
+.form-select::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+.form-select::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+.bg-success {
+    background-color: var(--secondary-color) !important;
+}
+
+.text-success {
+    color: var(--secondary-color) !important;
+}
+
+.alert-info {
+    background-color: var(--light-color);
+    color: var(--dark-color);
+    border: 1px solid var(--secondary-color);
+}
+
+/* Footer styles */
+footer {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    padding: 30px 0;
+}
+
+footer a {
+    color: var(--light-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: var(--secondary-color);
+}
+
+.list-inline-item:not(:last-child) {
+    margin-right: 15px;
+}
+
+/* Loading spinner */
+.spinner-border-sm {
+    width: 1rem;
+    height: 1rem;
+}
+
+/* Form feedback styles */
+.alert {
+    border-radius: 8px;
+    border: none;
+}
+
+/* Стили для блока тарифов и услуг */
+#services .card {
+    min-height: 420px;
+    border-radius: 2rem !important;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.10);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+}
+
+#services .card-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+#services ul {
+    font-size: 1.15rem;
+}
+
+#services .fw-bold.fs-5 {
+    font-size: 2rem !important;
+}
+
+#services .badge {
+    font-size: 1rem;
+    padding: 0.5em 1em;
+    border-radius: 1em;
+}
+
+#services .btn {
+    font-size: 1.15rem;
+    border-radius: 2rem;
+    padding: 0.75em 1.5em;
+}
+
+/* Hero container */
+.hero {
+    width: 100%;
+    padding: 40px 0;
+}
+
+.hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Icon box */
+.icon-box {
+    background: rgba(255, 255, 255, 0.2);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    transition: all 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 100px 0 80px;
+    }
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    .hero-image {
+        width: 280px;
+        height: 280px;
+    }
+    .section {
+        padding: 60px 0;
+    }
+    
+    .navbar-nav {
+        text-align: center;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-image {
+        width: 200px;
+        height: 200px;
+    }
+} 
