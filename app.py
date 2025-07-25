@@ -251,6 +251,18 @@ def sitemap():
 def robots():
     return send_from_directory(app.static_folder, "robots.txt", mimetype='text/plain')
 
+@app.route('/api/test', methods=['GET'])
+def test_api():
+    """Простой тест API"""
+    return jsonify({
+        "success": True,
+        "message": "API работает!",
+        "timestamp": datetime.now().isoformat(),
+        "telegram_configured": True,
+        "limiter_available": True,
+        "talisman_available": True
+    })
+
 @app.route('/api/test-telegram', methods=['GET'])
 @limiter.limit(f"{Config.RATE_LIMIT_PER_MINUTE} per minute")
 @handle_telegram_errors
