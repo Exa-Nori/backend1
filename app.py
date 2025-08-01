@@ -11,7 +11,7 @@ from config import get_config
 # Получение конфигурации
 Config = get_config()
 
-app = Flask(__name__, static_folder="public")
+app = Flask(__name__, static_folder="/www/lile-des-reves.com/")
 Compress(app)
 
 # Настройка логирования

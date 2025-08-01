@@ -1,0 +1,26 @@
+# Включаем mod_rewrite
+RewriteEngine On
+
+# Разрешаем доступ к статическим файлам напрямую
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^(.*)$ - [L]
+
+# Разрешаем доступ к папкам напрямую
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^(.*)$ - [L]
+
+# Перенаправляем все остальные запросы на Python
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ passenger_wsgi.py [QSA,L]
+
+# Настройки для Python
+AddHandler wsgi-script .py
+Options +ExecCGI
+
+# Разрешаем выполнение Python файлов
+<Files "*.py">
+    Require all granted
+    Order allow,deny
+    Allow from all
+</Files>
