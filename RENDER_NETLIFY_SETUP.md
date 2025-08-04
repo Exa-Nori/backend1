@@ -90,7 +90,7 @@ curl https://your-app.onrender.com/
 
 ### 4.2 Тест Telegram
 ```bash
-curl https://your-app.onrender.com/api/test-telegram
+curl https://lile-de-reve-api.onrender.com/api/test-telegram
 # Должен отправить тестовое сообщение в Telegram
 ```
 
