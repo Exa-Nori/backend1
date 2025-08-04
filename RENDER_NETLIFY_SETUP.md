@@ -67,7 +67,7 @@ curl https://lile-de-reve-api.onrender.com/
 
 ```javascript
 // В public/index.html, public/all-services.html и других
-const API_BASE_URL = 'https://lile-de-reve-api.onrender.com';
+const API_BASE_URL = 'https://your-app.onrender.com';
 ```
 
 ### 3.2 Обновите fetch запросы
@@ -152,7 +152,7 @@ CORS(app, origins=['https://your-netlify-site.netlify.app'])
 
 Теперь ваш сайт работает на:
 - **Фронтенд:** `https://your-site.netlify.app`
-- **API:** `https://lile-de-reve-api.onrender.com`
+- **API:** `https://your-app.onrender.com`
 
 Оба доступны с российских операторов! 📱🇷🇺
 
