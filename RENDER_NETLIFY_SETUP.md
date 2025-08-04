@@ -38,7 +38,7 @@ Render автоматически развернет приложение при
 ### 1.5 Проверка
 ```bash
 # Получите URL из Render Dashboard
-curl https://your-app.onrender.com/
+curl https://lile-de-reve-api.onrender.com/
 # Должен показать: {"status": "ok", "message": "L'ÎLE DE RÊVE API работает на Render"}
 ```
 
