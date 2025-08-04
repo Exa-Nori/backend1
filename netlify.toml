@@ -7,8 +7,8 @@
 
 # API routes - redirect to Netlify functions
 [[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/api"
+  from = "/api/send-to-telegram"
+  to = "/.netlify/functions/send-to-telegram"
   status = 200
 
 # Static files - serve from public directory
@@ -18,4 +18,4 @@
   status = 200
 
 [functions]
-  directory = "netlify/functions" 
+  directory = "functions" 
