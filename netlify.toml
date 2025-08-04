@@ -5,30 +5,11 @@
 [build.environment]
   PYTHON_VERSION = "3.9"
 
-# API routes - redirect to specific Netlify functions
+# API routes - redirect to Netlify functions
 [[redirects]]
-  from = "/api/send-to-telegram"
-  to = "/.netlify/functions/send-to-telegram"
+  from = "/api/*"
+  to = "/.netlify/functions/api"
   status = 200
-  force = true
-
-[[redirects]]
-  from = "/api/send-order-to-telegram"
-  to = "/.netlify/functions/send-order-to-telegram"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/api/test-telegram"
-  to = "/.netlify/functions/test-telegram"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/api/get-chat-id"
-  to = "/.netlify/functions/get-chat-id"
-  status = 200
-  force = true
 
 # Static files - serve from public directory
 [[redirects]]
