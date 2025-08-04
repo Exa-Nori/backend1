@@ -3,754 +3,323 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L'ÎLE DE RÊVE - Патронажная служба | Уход за пожилыми в Москве</title>
+    <title>L'ÎLE DE RÊVE - Остров Мечты</title>
     
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="L'ÎLE DE RÊVE - профессиональная патронажная служба в Москве. Уход за пожилыми людьми, медицинский уход на дому, бытовая помощь. Круглосуточная поддержка. Звоните: +7 499 911-24-24">
-    <meta name="keywords" content="патронажная служба, уход за пожилыми, уход за больными, медицинский уход на дому, сиделка, патронаж, уход за пожилыми в Москве, бытовая помощь, психологическая поддержка, круглосуточный уход">
-    <meta name="author" content="L'ÎLE DE RÊVE">
-    <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#675d53">
-    
-    <!-- Verification -->
-    <meta name="yandex-verification" content="51a0df8055905dc0" />
-    
-    <!-- Geographic Meta Tags -->
-    <meta name="geo.region" content="RU-MOW">
-    <meta name="geo.placename" content="Москва">
-    <meta name="geo.position" content="55.7558;37.6176">
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="L'ÎLE DE RÊVE - Патронажная служба | Уход за пожилыми в Москве">
-    <meta property="og:description" content="Профессиональная патронажная служба в Москве. Уход за пожилыми людьми, медицинский уход на дому, бытовая помощь. Круглосуточная поддержка.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://lile-des-reves.com">
-    <meta property="og:image" content="https://lile-des-reves.com/logo-round.png">
-    <meta property="og:site_name" content="L'ÎLE DE RÊVE">
-    <meta property="og:locale" content="ru_RU">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://lile-des-reves.com/">
-    
-    <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    
-    <!-- Stylesheets -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css?v=1.4">
-    
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "L'ÎLE DE RÊVE",
-        "description": "Профессиональная патронажная служба в Москве. Уход за пожилыми людьми, медицинский уход на дому, бытовая помощь.",
-        "url": "https://lile-des-reves.com",
-        "logo": "https://lile-des-reves.com/logo-round.png",
-        "telephone": ["+74999112424", "+79991119009"],
-        "email": "liledereve@hotmail.com",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "ул. Чертановская, д. 7А, помещ. 26",
-            "addressLocality": "Москва",
-            "addressCountry": "RU"
-        },
-        "openingHours": "Mo-Su 00:00-23:59",
-        "priceRange": "$$",
-        "serviceType": ["Патронажная служба", "Уход за пожилыми", "Медицинский уход", "Бытовая помощь"],
-        "areaServed": { "@type": "City", "name": "Москва" },
-        "sameAs": ["https://t.me/liledereve", "https://www.instagram.com/liledereve_"]
-    }
+    <!-- Автоматический редирект для мобильных устройств -->
+    <script>
+        // Проверяем, является ли устройство мобильным
+        function isMobile() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        }
+        
+        // Проверяем доступность основного домена
+        function checkMainDomain() {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => resolve(true);
+                img.onerror = () => resolve(false);
+                img.src = 'https://lile-des-reves.com/favicon.ico?' + Date.now();
+            });
+        }
+        
+        // Автоматический редирект
+        async function autoRedirect() {
+            if (isMobile()) {
+                // Проверяем доступность основного домена
+                const isMainDomainAvailable = await checkMainDomain();
+                
+                if (!isMainDomainAvailable) {
+                    // Если основной домен недоступен, редиректим на Netlify
+                    console.log('Основной домен недоступен, редирект на Netlify');
+                    window.location.href = 'https://delicate-pasca-82b4c7.netlify.app';
+                    return;
+                }
+            }
+        }
+        
+        // Запускаем проверку при загрузке страницы
+        window.addEventListener('load', autoRedirect);
     </script>
 
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .logo {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        .form-container {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 20px auto;
+            max-width: 600px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 1.1em;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.9);
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .success {
+            background: rgba(76, 175, 80, 0.2);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+
+        .error {
+            background: rgba(244, 67, 54, 0.2);
+            border: 1px solid rgba(244, 67, 54, 0.3);
+        }
+
+        .loading {
+            background: rgba(33, 150, 243, 0.2);
+            border: 1px solid rgba(33, 150, 243, 0.3);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            opacity: 0.8;
+            font-size: 0.9em;
+        }
+
+        /* Мобильные стили */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .logo {
+                font-size: 2.5em;
+            }
+            
+            .form-container {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Навигация -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="https://lile-des-reves.com">
-                <img src="minilogo.png" alt="Logo" class="navbar-logo" loading="eager">
-                <span class="brand-text">L'ÎLE DE RÊVE</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="all-services.html">Услуги</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="About.html">О нас</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contacts">Контакты</a>
-                    </li>
-                </ul>
-            </div>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🏝️ L'ÎLE DE RÊVE</div>
+            <div class="subtitle">Остров Мечты - Ваше идеальное путешествие</div>
         </div>
-    </nav>
 
-    <!-- Герой-секция -->
-    <section class="hero-section">
-        <div class="container text-center">
-            <section class="hero">
-                <div class="hero-container">
-                <img src="logo-round.png"  alt="Logo" class="hero-image" loading="eager">
+        <div class="form-container">
+            <h2 style="text-align: center; margin-bottom: 30px;">📧 Свяжитесь с нами</h2>
+            
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Имя *</label>
+                    <input type="text" id="name" name="name" required maxlength="100">
                 </div>
-            </section>
-            <h1 class="hero-title display-3">L'ÎLE DE RÊVE</h1>
-            <p class="hero-subtitle lead">ВАШ ОСТРОВ СПОКОЙСТВИЯ И ЗАБОТЫ</p>
-            <p class="hero-subtitle lead">Патронажная Деятельность</p>
-            <a href="#services" class="btn btn-light btn-lg mt-4 px-4 py-2">Узнать больше</a>
+
+                <div class="form-group">
+                    <label for="phone">Телефон *</label>
+                    <input type="tel" id="phone" name="phone" required maxlength="20">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Сообщение *</label>
+                    <textarea id="message" name="message" required maxlength="1000" placeholder="Расскажите о вашем идеальном путешествии..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    ✈️ Отправить заявку
+                </button>
+            </form>
+
+            <div id="status" class="status" style="display: none;"></div>
         </div>
-    </section>
 
-    <!-- О нас -->
-    <section class="section" id="about">
-        <div class="container">
-            <h2 class="section-title">О нашей компании</h2>
-            <div class="row align-items-center">
-                <div class="col-lg-6 mb-4 mb-lg-0">
-                    <div class="pe-lg-4">
-                        <h3 class="mb-4">L'ÎLE DE RÊVE - островок заботы</h3>
-                        <p>Мы верим, что в такой великой стране, как Российская Федерация, сфера патронажного ухода должна развиваться на уровне, достойном ее масштабов. Этот проект - не просто бизнес, а социально значимая инициатива, которая способна менять качество жизни людей.</p>
-                        <p>"Наша цель - не просто оказывать услуги, а закладывать новые стандарты, вдохновляя на перемены в этой важной для общества сфере."</p>
-                        <div class="nav-item">
-                            <a href="About.html" class="btn btn-primary me-2">О нашей компании</a>
-                            <a href="#services" class="btn btn-outline-primary">Все услуги</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="about-content">
-                        <h4>Мы предлагаем вам:</h4>
-                        <ul class="list-unstyled">
-                                                    <li class="mb-2"><i class="fas fa-check-circle me-2" style="color: var(--secondary-color);"></i> Амбулаторный и стационарный уход за пожилыми людьми, пациентами с ограниченными возможностями и ментальными расстройствами.</li>
-                        <li class="mb-2"><i class="fas fa-check-circle me-2" style="color: var(--secondary-color);"></i> Индивидуальный подход, где каждый подопечный окружен вниманием, уважением и профессиональной поддержкой.</li>
-                        <li class="mb-2"><i class="fas fa-check-circle me-2" style="color: var(--secondary-color);"></i> Комфортная среда, позволяющая вести образ жизни, максимально приближенный к здоровому ритму.</li>
-                        </ul>
-                        <p>Мы работаем по всей Москве и ближайшему Подмосковью, обеспечивая круглосуточную поддержку нашим клиентам.</p>
-                    </div>
-                </div>
-            </div>
+        <div class="footer">
+            <p>© 2024 L'ÎLE DE RÊVE. Все права защищены.</p>
+            <p>Создайте свое идеальное путешествие вместе с нами</p>
         </div>
-    </section>
-    <!-- Калькулятор услуг -->
-    <section class="section bg-light" id="service-calculator">
-        <div class="container">
-            <h2 class="section-title mb-5">Калькулятор стоимости</h2>
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-body p-4">
-                            <!-- Выбор услуги -->
-                            <div class="mb-4">
-                                <label class="form-label fw-bold mb-3">Выберите услугу:</label>
-                                <select class="form-select form-select-lg" id="serviceTypeSelect">
-                                    <option value="" selected>Выберите тип услуги</option>
-                                    <option value="single">Почасовой уход</option>
-                                    <option value="night">Ночной уход</option>
-                                    <option value="day">Суточный уход</option>
-                                    <option value="base">Базовый комфорт</option>
-                                    <option value="full">Полное сопровождение</option>
-                                    <option value="rest">Передышка для родственников</option>
-                                    <option value="emergency">Экстренная помощь</option>
-                                </select>
-                            </div>
+    </div>
 
-                            <!-- Детали услуги -->
-                            <div id="serviceDetails" class="d-none mb-4">
-                                <div class="p-3 rounded" style="background-color: var(--light-color);">
-                                    <h6 id="serviceTitle" class="mb-2" style="color: var(--primary-color);"></h6>
-                                    <p id="serviceDescription" class="mb-2 small text-muted"></p>
-                                    <div id="serviceTime" class="small" style="color: var(--dark-color);"></div>
-                                </div>
-                            </div>
-
-                            <!-- Количество -->
-                            <div id="quantitySection" class="d-none mb-4">
-                                <label id="quantityLabel" class="form-label fw-bold mb-3">Количество:</label>
-                                <div class="row align-items-center">
-                                    <div class="col-8">
-                                        <input type="range" class="form-range" id="quantitySlider" min="1" max="30" value="1">
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="input-group">
-                                            <input type="number" class="form-control text-center" id="quantityInput" min="1" max="30" value="1">
-                                            <span class="input-group-text" id="quantityUnit" style="background-color: var(--light-color); border-color: var(--primary-color);"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Результат -->
-                            <div id="calcResult" class="d-none text-center">
-                                <div class="p-4 rounded" style="background-color: var(--primary-color); color: white;">
-                                    <h5 id="resultTitle" class="mb-2"></h5>
-                                    <div id="resultPrice" class="h3 mb-2"></div>
-                                    <div id="resultDetails" class="small opacity-75"></div>
-                                    <div id="resultBenefit" class="mt-2"></div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Услуги -->
-    <section class="section" id="services">
-        <div class="container">
-            <h2 class="section-title">Тарифные пакеты и услуги</h2>
-            <div class="row justify-content-center">
-                <!-- Пакет Базовый комфорт -->
-                <div class="col-md-6 col-lg-3 mb-4">
-                    <div class="card border-0 shadow h-100 text-center bg-white">
-                        <div class="card-body d-flex flex-column align-items-center">
-                            <div class="mb-3 display-4 text-primary">
-                                <i class="bi bi-house-heart"></i>
-                            </div>
-                            <h4 class="card-title mb-2">Базовый комфорт</h4>
-                            <ul class="list-unstyled small mb-3">
-                                <li>10 часов ухода в неделю</li>
-                                <li>2 медицинские процедуры</li>
-                                <li>Помощь по дому (уборка, покупки)</li>
-                            </ul>
-                            <p class="mt-2 text-secondary" style="font-size:1.08rem;">Если нужно регулярное сопровождение, но не требуется круглосуточный уход</p>
-                            <div class="mb-2">
-                                <span class="text-decoration-line-through text-muted">25 000</span>
-                                <span class="fw-bold fs-5">19 900 ₽</span>
-                                <span class="badge" style="background-color: var(--secondary-color); color: white;">-20%</span>
-                            </div>
-                            <button class="btn btn-outline-primary w-100 mt-auto order-btn" data-title="Базовый комфорт" data-price="19900">Заказать</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Пакет Полное сопровождение -->
-                <div class="col-md-6 col-lg-3 mb-4">
-                    <div class="card border-0 shadow h-100 text-center bg-white">
-                        <div class="card-body d-flex flex-column align-items-center">
-                            <div class="mb-3 display-4 text-primary">
-                                <i class="bi bi-person-bounding-box"></i>
-                            </div>
-                            <h4 class="card-title mb-2">Полное сопровождение</h4>
-                            <ul class="list-unstyled small mb-3">
-                                <li>Уход 24/7 (5 дней)</li>
-                                <li>Ежедневные процедуры</li>
-                                <li>Реабилитация и отчеты</li>
-                            </ul>
-                            <p class="mt-2 text-secondary" style="font-size:1.08rem;">После операции, для лежачих больных или в период обострения</p>
-                            <div class="mb-2">
-                                <span class="text-decoration-line-through text-muted">75 000</span>
-                                <span class="fw-bold fs-5">59 900 ₽</span>
-                                <span class="badge" style="background-color: var(--secondary-color); color: white;">-25%</span>
-                            </div>
-                            <button class="btn btn-outline-primary w-100 mt-auto order-btn" data-title="Полное сопровождение" data-price="59900">Заказать</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Пакет Передышка для родственников -->
-                <div class="col-md-6 col-lg-3 mb-4">
-                    <div class="card border-0 shadow h-100 text-center bg-white">
-                        <div class="card-body d-flex flex-column align-items-center">
-                            <div class="mb-3 display-4 text-primary">
-                                <i class="bi bi-cup-hot"></i>
-                            </div>
-                            <h4 class="card-title mb-2">Передышка для родственников</h4>
-                            <ul class="list-unstyled small mb-3">
-                                <li>Временное проживание</li>
-                                <li>Полный уход</li>
-                                <li>Поддержка 24/7</li>
-                            </ul>
-                            <p class="mt-2 text-secondary" style="font-size:1.08rem;">Если нужно отдохнуть или куда-то уехать</p>
-                            <div class="mb-2">
-                                <span class="fw-bold fs-5">32 900 ₽</span>
-                            </div>
-                            <button class="btn btn-outline-primary w-100 mt-auto order-btn" data-title="Передышка для родственников" data-price="32900">Заказать</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Пакет Экстренная помощь -->
-                <div class="col-md-6 col-lg-3 mb-4">
-                    <div class="card border-0 shadow h-100 text-center bg-white">
-                        <div class="card-body d-flex flex-column align-items-center">
-                            <div class="mb-3 display-4 text-primary">
-                                <i class="bi bi-lightning-charge"></i>
-                            </div>
-                            <h4 class="card-title mb-2">Экстренная помощь</h4>
-                            <ul class="list-unstyled small mb-3">
-                                <li>Сиделка за 2 часа</li>
-                                <li>Уход, процедуры, сопровождение</li>
-                            </ul>
-                            <p class="mt-2 text-secondary" style="font-size:1.08rem;">Если нужно прямо сейчас</p>
-                            <div class="mb-2">
-                                <span class="fw-bold fs-5">9 900 ₽</span>
-                            </div>
-                            <button class="btn btn-outline-primary w-100 mt-auto order-btn" data-title="Экстренная помощь" data-price="9900">Заказать</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center mt-4">
-                <a href="all-services.html" class="btn btn-primary btn-lg px-5">Посмотреть все услуги</a>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Контакты -->
-    <section class="section bg-light" id="contacts">
-        <div class="container">
-            <h2 class="section-title">Контакты</h2>
-            <div class="row">
-                <div class="col-lg-6 mb-5 mb-lg-0">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body p-5">
-                            <h3 class="mb-4">Напишите нам</h3>
-                            <form id="contactForm">
-                                <div class="mb-3">
-                                    <label for="name" class="form-label">Ваше имя *</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Введите ваше имя" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Введите ваш email">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="phone" class="form-label">Телефон *</label>
-                                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Введите ваш номер телефона" required pattern="^\\+?7[0-9]{10}$|^8[0-9]{10}$">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="message" class="form-label">Сообщение *</label>
-                                    <textarea class="form-control" id="message" name="message" rows="4" placeholder="Введите ваше сообщение" required></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary" id="submitBtn">
-                                    <span class="btn-text">Отправить сообщение</span>
-                                    <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
-                                </button>
-                                <div id="formFeedback" class="mt-3"></div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body p-5">
-                            <h3 class="mb-4">Контактная информация</h3>
-                            <div class="contact-info">
-                                <div class="d-flex mb-4">
-                                    <i class="fas fa-map-marker-alt mt-1 me-3"></i>
-                                    <div>
-                                        <h5 class="mb-1">Адрес</h5>
-                                        <p class="mb-0">г. Москва, ул. Чертановская, д. 7А, помещ. 26</p>
-                                    </div>
-                                </div>
-                                <div class="d-flex mb-4">
-                                    <i class="fas fa-phone mt-1 me-3"></i>
-                                    <div>
-                                        <h5 class="mb-1">Телефон</h5>
-                                        <p class="mb-0">+7 499 911-24-24</p>
-                                        <p class="mb-0">+7 999 111-90-09</p>
-                                    </div>
-                                </div>
-                                <div class="d-flex mb-4">
-                                    <i class="fas fa-envelope mt-1 me-3"></i>
-                                    <div>
-                                        <h5 class="mb-1">Email</h5>
-                                        <p class="mb-0">liledereve@hotmail.com</p>
-                                    </div>
-                                </div>
-                                <div class="d-flex">
-                                    <i class="fas fa-clock mt-1 me-3"></i>
-                                    <div>
-                                        <h5 class="mb-1">Работаем Круглосуточно</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mt-5">
-                                <h5 class="mb-3">Мы в соцсетях</h5>
-                                <a href="https://t.me/liledereve" class="btn btn-outline-secondary btn-sm me-2"><i class="fab fa-telegram-plane me-1"></i> Telegram</a>
-                                <a href="https://wa.me/74999912424" class="btn btn-outline-secondary btn-sm me-2"><i class="fab fa-whatsapp me-1"></i> WhatsApp</a>
-                                <a href="https://www.instagram.com/liledereve_" class="btn btn-outline-secondary btn-sm me-2"><i class="fab fa-instagram me-1"></i> Instagram</a>
-                                <div class="mt-4">
-                                <p class="small mb-0 ">ООО "ИЛЬ ДЕ РЕВ" | ОГРН 1257700221624 | ИНН 9726098578</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-   <!-- Футер -->
-    <footer class="text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 mb-4 mb-lg-0 text-lg-start">
-                    <img src="sminilogo-round.png" alt="Logo" style="height: 40px; margin-right: 10px;" loading="eager">L'ÎLE DE RÊVE
-                </div>
-                <div class="col-lg-4 mb-4 mb-lg-0">
-                    <ul class="list-inline mb-0">
-                        <li class="list-inline-item"><a href="all-services.html">Услуги</a></li>
-                        <li class="list-inline-item"><a href="About.html">О нас</a></li>
-                        <li class="list-inline-item"><a href="https://lile-des-reves.com#contacts">Контакты</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-4 text-lg-end">
-                    <p class="small mb-0">© 2025 L'ÎLE DE RÊVE. Все права защищены.</p>
-                    
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Скрипты -->
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom JS -->
     <script>
-        // Изменение навигации при скроллe
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 50) {
-                document.querySelector('.navbar').classList.add('scrolled');
-            } else {
-                document.querySelector('.navbar').classList.remove('scrolled');
-            }
-        });
+        const form = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const status = document.getElementById('status');
 
-        // Плавная прокрутка для якорных ссылок
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 70,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
+        // Валидация телефона
+        function validatePhone(phone) {
+            const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
+            return phoneRegex.test(phone);
+        }
 
-        // Анимация при загрузке
-        document.addEventListener('DOMContentLoaded', function() {
-            const elements = document.querySelectorAll('.fade-in');
-            elements.forEach(el => {
-                el.style.opacity = '0';
-            });
-            setTimeout(() => {
-                elements.forEach(el => {
-                    el.style.opacity = '1';
-                });
-            }, 100);
-        });
+        // Показ статуса
+        function showStatus(message, type) {
+            status.textContent = message;
+            status.className = `status ${type}`;
+            status.style.display = 'block';
+        }
 
-        // Contact form handling
-        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+        // Обработка отправки формы
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            const submitBtn = document.getElementById('submitBtn');
-            const btnText = submitBtn.querySelector('.btn-text');
-            const spinner = submitBtn.querySelector('.spinner-border');
-            const feedback = document.getElementById('formFeedback');
-            
-            // Get form data
-            const formData = {
-                name: document.getElementById('name').value.trim(),
-                email: document.getElementById('email').value.trim(),
-                phone: document.getElementById('phone').value.trim(),
-                message: document.getElementById('message').value.trim(),
-                timestamp: new Date().toLocaleString('ru-RU')
-            };
-            
-            // Validate required fields
-            if (!formData.name || !formData.phone || !formData.message) {
-                showFeedback('Пожалуйста, заполните все обязательные поля.', 'danger');
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            // Валидация
+            if (name.length < 2) {
+                showStatus('Имя должно содержать минимум 2 символа', 'error');
                 return;
             }
-            
-            // Проверка телефона
-            const phonePattern = /^\+?7[0-9]{10}$|^8[0-9]{10}$/;
-            if (!phonePattern.test(formData.phone)) {
-                showFeedback('Пожалуйста, введите корректный номер телефона (например, +79991112233 или 89991112233).', 'danger');
+
+            if (!validatePhone(phone)) {
+                showStatus('Введите корректный номер телефона', 'error');
                 return;
             }
-            
-            // Show loading state
+
+            if (message.length < 10) {
+                showStatus('Сообщение должно содержать минимум 10 символов', 'error');
+                return;
+            }
+
+            // Отправка
             submitBtn.disabled = true;
-            btnText.textContent = 'Отправляем...';
-            spinner.classList.remove('d-none');
-            feedback.innerHTML = '';
-            
+            submitBtn.textContent = '📤 Отправляем...';
+            showStatus('Отправляем вашу заявку...', 'loading');
+
             try {
                 const response = await fetch('https://lile-de-reve-api.onrender.com/api/send-to-telegram', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(formData)
+                    body: JSON.stringify({
+                        name: name,
+                        phone: phone,
+                        message: message
+                    })
                 });
-                
+
                 const data = await response.json();
-                
+
                 if (response.ok && data.success) {
-                    showFeedback('✅ Сообщение успешно отправлено! Мы свяжемся с вами в ближайшее время.', 'success');
-                    // Reset form
-                    document.getElementById('contactForm').reset();
+                    showStatus('✅ Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.', 'success');
+                    form.reset();
                 } else {
-                    throw new Error(data.error || 'Произошла ошибка при отправке');
+                    throw new Error(data.message || 'Ошибка отправки');
                 }
-                
             } catch (error) {
-                console.error('Error:', error);
-                showFeedback('❌ Произошла ошибка при отправке сообщения. Пожалуйста, попробуйте позже или свяжитесь с нами по телефону.', 'danger');
+                console.error('Ошибка:', error);
+                showStatus('❌ Ошибка отправки. Попробуйте еще раз или свяжитесь с нами по телефону.', 'error');
             } finally {
-                // Reset button state
                 submitBtn.disabled = false;
-                btnText.textContent = 'Отправить сообщение';
-                spinner.classList.add('d-none');
-            }
-        });
-        
-        function showFeedback(message, type) {
-            const feedback = document.getElementById('formFeedback');
-            feedback.innerHTML = `
-                <div class="alert alert-${type} alert-dismissible fade show" role="alert">
-                    ${message}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            `;
-        }
-    </script>
-    <script>
-    // Минималистичный калькулятор услуг
-    document.addEventListener('DOMContentLoaded', function() {
-        const serviceData = {
-            single: { 
-                name: 'Почасовой уход', 
-                price: [1500, 2990], 
-                unit: 'час', 
-                unitShort: 'ч', 
-                max: 24,
-                description: 'Индивидуальный уход с почасовой оплатой',
-                time: '1 час за сеанс'
-            },
-            night: { 
-                name: 'Ночной уход', 
-                price: [4600, 6100], 
-                unit: 'Смена', 
-                unitShort: 'см', 
-                max: 30,
-                description: 'Профессиональный уход в ночное время',
-                time: 'с 20:00 до 08:00 (12 часов)'
-            },
-            day: { 
-                name: 'Суточный уход', 
-                price: [6100, 8700], 
-                unit: 'сутки', 
-                unitShort: 'сут', 
-                max: 30,
-                description: 'Круглосуточный профессиональный уход',
-                time: '24 часа непрерывно'
-            },
-            base: { 
-                name: 'Базовый комфорт', 
-                price: 19900, 
-                old: 25000, 
-                unit: 'месяц', 
-                unitShort: 'мес', 
-                benefit: 5100, 
-                max: 12,
-                description: '10 часов ухода в неделю + медицинские процедуры + помощь по дому',
-                time: 'еженедельно по 10 часов'
-            },
-            full: { 
-                name: 'Полное сопровождение', 
-                price: 59900, 
-                old: 75000, 
-                unit: 'пакет', 
-                unitShort: 'пак', 
-                benefit: 15100, 
-                max: 12,
-                description: 'Интенсивный уход 24/7 в течение 5 дней',
-                time: '120 часов (5 дней круглосуточно)'
-            },
-            rest: { 
-                name: 'Передышка для родственников', 
-                price: 32900, 
-                unit: 'период', 
-                unitShort: 'пер', 
-                max: 10,
-                description: 'Временное проживание подопечного + полный уход',
-                time: 'по договору'
-            },
-            emergency: { 
-                name: 'Экстренная помощь', 
-                price: 9900, 
-                unit: 'вызов', 
-                unitShort: 'выз', 
-                max: 10,
-                description: 'Быстрое прибытие сиделки в течение 2 часов',
-                time: 'прибытие за 2 часа'
-            }
-        };
-
-        const serviceSelect = document.getElementById('serviceTypeSelect');
-        const serviceDetails = document.getElementById('serviceDetails');
-        const quantitySection = document.getElementById('quantitySection');
-        const quantitySlider = document.getElementById('quantitySlider');
-        const quantityInput = document.getElementById('quantityInput');
-        const calcResult = document.getElementById('calcResult');
-        const toggleButton = document.getElementById('toggleAllServices');
-        const detailedList = document.getElementById('detailedPriceList');
-
-        // Выбор услуги
-        serviceSelect.addEventListener('change', function() {
-            const serviceType = this.value;
-            if (serviceType && serviceData[serviceType]) {
-                showServiceDetails(serviceType);
-                showQuantitySection(serviceType);
-                calculatePrice(serviceType, 1);
-            } else {
-                hideAllSections();
+                submitBtn.textContent = '✈️ Отправить заявку';
             }
         });
 
-        // Ползунок и поле ввода
-        quantitySlider.addEventListener('input', function() {
-            quantityInput.value = this.value;
-            if (serviceSelect.value) {
-                calculatePrice(serviceSelect.value, parseInt(this.value));
-            }
-        });
-
-        quantityInput.addEventListener('input', function() {
-            const value = Math.max(1, Math.min(parseInt(this.value) || 1, parseInt(quantitySlider.max)));
-            this.value = value;
-            quantitySlider.value = value;
-            if (serviceSelect.value) {
-                calculatePrice(serviceSelect.value, value);
-            }
-        });
-
-        // Показать/скрыть прайс-лист
-        toggleButton.addEventListener('click', function() {
-            if (detailedList.style.display === 'none') {
-                detailedList.style.display = 'block';
-                this.textContent = 'Скрыть прайс-лист';
-            } else {
-                detailedList.style.display = 'none';
-                this.textContent = 'Посмотреть все цены';
-            }
-        });
-
-        function showServiceDetails(serviceType) {
-            const data = serviceData[serviceType];
-            document.getElementById('serviceTitle').textContent = data.name;
-            document.getElementById('serviceDescription').textContent = data.description;
-            document.getElementById('serviceTime').textContent = data.time;
-            serviceDetails.classList.remove('d-none');
-        }
-
-        function showQuantitySection(serviceType) {
-            const data = serviceData[serviceType];
-            document.getElementById('quantityLabel').textContent = getQuantityLabel(serviceType);
-            document.getElementById('quantityUnit').textContent = data.unitShort;
-            
-            quantitySlider.max = data.max;
-            quantityInput.max = data.max;
-            quantitySlider.value = 1;
-            quantityInput.value = 1;
-            
-            quantitySection.classList.remove('d-none');
-        }
-
-        function getQuantityLabel(serviceType) {
-            const labels = {
-                'single': 'Часов:',
-                'night': 'Смен:',
-                'day': 'Суток:',
-                'base': 'Месяцев:',
-                'full': 'Пакетов:',
-                'rest': 'Периодов:',
-                'emergency': 'Вызовов:'
-            };
-            return labels[serviceType] || 'Количество:';
-        }
-
-        function getCorrectPlural(unit, quantity) {
-            if (quantity === 1) {
-                return unit;
-            }
-            
-            // Правила склонения для разных единиц
-            const pluralRules = {
-                'смена': 'смен',
-                'Смена': 'смен',
-                'сутки': 'суток',
-                'час': 'часов',
-                'месяц': 'месяцев',
-                'пакет': 'пакетов',
-                'период': 'периодов',
-                'вызов': 'вызовов',
-                'Вызов': 'вызовов'
-            };
-            
-            return pluralRules[unit] || unit;
-        }
-
-        function calculatePrice(serviceType, quantity) {
-            const data = serviceData[serviceType];
-            
-            let costText = '';
-            let benefitText = '';
-            
-            if (Array.isArray(data.price)) {
-                const min = data.price[0] * quantity;
-                const max = data.price[1] * quantity;
-                costText = `${min.toLocaleString()}–${max.toLocaleString()} ₽`;
-            } else {
-                const total = data.price * quantity;
-                costText = `${total.toLocaleString()} ₽`;
-                
-                if (data.old && data.benefit) {
-                    const benefit = data.benefit * quantity;
-                    benefitText = `<div class="small opacity-75">Экономия: ${benefit.toLocaleString()} ₽</div>`;
+        // Автоматическая валидация телефона
+        document.getElementById('phone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 0) {
+                if (value.length === 1 && value !== '7' && value !== '8') {
+                    value = '7' + value;
+                }
+                if (value.length === 1 && value === '8') {
+                    value = '7';
                 }
             }
-            
-            document.getElementById('resultTitle').textContent = data.name;
-            document.getElementById('resultPrice').textContent = costText;
-            document.getElementById('resultDetails').textContent = `${quantity} ${getCorrectPlural(data.unit, quantity)}`;
-            document.getElementById('resultBenefit').innerHTML = benefitText;
-            
-            calcResult.classList.remove('d-none');
-        }
-
-        function hideAllSections() {
-            serviceDetails.classList.add('d-none');
-            quantitySection.classList.add('d-none');
-            calcResult.classList.add('d-none');
-        }
-    });
+            e.target.value = value;
+        });
     </script>
-    <script>
-document.querySelectorAll('.order-btn').forEach(btn => {
-  btn.addEventListener('click', function() {
-    const title = encodeURIComponent(this.dataset.title);
-    const price = encodeURIComponent(this.dataset.price);
-    window.location.href = `confirm-payment.html?title=${title}&price=${price}`;
-  });
-});
-</script>
 </body>
 </html>
 
