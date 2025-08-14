@@ -9,7 +9,7 @@ class Config:
     
     # Telegram Bot Configuration
     BOT_TOKEN = os.environ.get('BOT_TOKEN', "7585621279:AAFLcwzw-lrh5PCHvgGZqZ6lG-TIPlwXZZo")
-    CHAT_ID = os.environ.get('CHAT_ID', "5682979333")
+    CHAT_ID = os.environ.get('CHAT_ID', "8191889121")
     
     # Application Configuration
     DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
