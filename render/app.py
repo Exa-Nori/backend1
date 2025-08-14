@@ -14,7 +14,7 @@ CORS(app)  # Разрешаем CORS для всех доменов
 
 # Конфигурация
 BOT_TOKEN = os.environ.get('BOT_TOKEN', '7585621279:AAFLcwzw-lrh5PCHvgGZqZ6lG-TIPlwXZZo')
-CHAT_ID = os.environ.get('CHAT_ID', '5682979333')
+CHAT_ID = os.environ.get('CHAT_ID', '8191889121')
 TELEGRAM_API_TIMEOUT = 30
 MAX_NAME_LENGTH = 100
 MAX_MESSAGE_LENGTH = 1000
